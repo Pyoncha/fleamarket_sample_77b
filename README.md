@@ -29,7 +29,7 @@ Things you may want to cover:
  - has_one :user_address
  - has_many :items
 
-## user_adressテーブル
+## user_addressテーブル
  | Cloumn | Type | Options |
  | ------ | ---- | ------- |
  | first_name | string | null:false |
@@ -39,7 +39,7 @@ Things you may want to cover:
  | postal_code | string | null:false |
  | prefecture | string | null:false |
  | city | string | null:false |
- | adress | string | null:false |
+ | address | string | null:false |
  | building | string |         |
  | phone_number | string |     |
  | user_id | string | null:false,foreign_key:true |
