@@ -73,35 +73,35 @@ Things you may want to cover:
 
 ### Association
  - belongs_to :user
- - has_one :image
- - has_many :categorys
- - has_many :brands
+ - has_many :images
+ - belongs_to :category
+ - belongs_to :brand
 
 ## imagesテーブル
  | Cloumn | Type | Options |
  | ------ | ---- | ------- |
- | image | string |        |
- | item_id | references | foreign_key:ture |
+ | image | string | null:false |
+ | item_id | references | null:false, foreign_key:ture |
+
+### Association
+ - belongs_to :item
+
+## categoriesテーブル
+ | Cloumn | Type | Options |
+ | ------ | ---- | ------- |
+ | name | string | null:false |
+ | ancestry | string |     |
 
 ### Association
  - has_many :items
 
-## categorysテーブル
+## brandsテーブル
  | Cloumn | Type | Options |
  | ------ | ---- | ------- |
- | name | string |         |
- | ancestry | string |     |
+ | name | string | null:false |
 
 ### Association
- - belongs_to :item
-
-## Brandsテーブル
- | Cloumn | Type | Options |
- | ------ | ---- | ------- |
- | name | string |         |
-
-### Association
- - belongs_to :item
+ - has_many :items
 
 * Database initialization
 
