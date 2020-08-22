@@ -13,16 +13,16 @@ Things you may want to cover:
 
 * Database creation
 ## usersテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | nickname | string | null:false |
- | e-mail | string | null:false |
- | password | string | null:false,unique:true |
+ | e-mail | string | null:false,unique:true |
+ | password | string | null:false |
  | first_name | string | null:false |
  | last_name | string | null:false |
  | first_name_kana | string | null:false |
  | last_name_kana | string | null:false |
- | birthday | string | null:false |
+ | birthday | date | null:false |
 
 ### Association
  - has_one :credit_card
@@ -30,7 +30,7 @@ Things you may want to cover:
  - has_many :items
 
 ## user_addressテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | first_name | string | null:false |
  | last_name | string | null:false |
@@ -42,27 +42,27 @@ Things you may want to cover:
  | address | string | null:false |
  | building | string |         |
  | phone_number | string |     |
- | user_id | string | null:false,foreign_key:true |
+ | user_id | references | null:false,foreign_key:true |
 
 ### Association
  - belongs_to :user
 
 ### credit_cardsテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | customer_id | string | null:false |
  | card_id | string | null:false |
- | user_id | string | null:false, foreign_key:true |
+ | user_id | references | null:false, foreign_key:true |
 
 ### Association
  - belongs_to :user
 
 ## itemsテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | name | string | null:false |
- | price | string | null:false |
- | describe | string | null:false |
+ | price | integer | null:false |
+ | describe | text | null:false |
  | condition | string | null:false |
  | shipping_charge | string | null:false |
  | prefecture | string | null:false |
@@ -78,16 +78,16 @@ Things you may want to cover:
  - belongs_to :brand
 
 ## imagesテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | image | string | null:false |
- | item_id | references | null:false, foreign_key:ture |
+ | item_id | references | null:false, foreign_key:true |
 
 ### Association
  - belongs_to :item
 
 ## categoriesテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | name | string | null:false |
  | ancestry | string |     |
@@ -96,7 +96,7 @@ Things you may want to cover:
  - has_many :items
 
 ## brandsテーブル
- | Cloumn | Type | Options |
+ | Column | Type | Options |
  | ------ | ---- | ------- |
  | name | string | null:false |
 
