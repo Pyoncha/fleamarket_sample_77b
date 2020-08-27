@@ -1,0 +1,7 @@
+.form
+  = form_for @item do |f|
+    = f.text_field :name, class: 'input-box__name', placeholder: 'type a name'
+    = f.number_field :price, class: 'input-box__price', placeholder: 'type a price'
+    = f.fields_for :images do |i|
+      = i.file_field :image, class: 'image-file' 
+    = f.submit 'Send', class: 'send-btn'

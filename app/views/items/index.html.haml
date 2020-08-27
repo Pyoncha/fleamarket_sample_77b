@@ -1,0 +1,9 @@
+%h1 トップページ
+
+.exhibit
+  = link_to new_item_path do
+    = '出品'
+
+.contents
+  = render @items
+  -# = render partial: 'item', collection: @items
