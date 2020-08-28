@@ -1,9 +1,20 @@
 .content
-  .content__name
-    = item.name
-  .content__price
-    = item.price
   .content__image
     - item.images.each do |image|
       = image_tag image.image.url
+  .content__name
+    = item.name
+  .content__describe
+    = item.describe
+  .content__condition
+    = item.condition.condition
+  .content__shipping_charge
+    = item.shipping_charge.defrayer
+  .content__prefecture
+    = item.prefecture.name
+  .content__delivery_date
+    = item.delivery_date.date
+  .content__price
+    = item.price
+  
 
