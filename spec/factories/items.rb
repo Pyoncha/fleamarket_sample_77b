@@ -3,6 +3,7 @@ FactoryBot.define do
     name                    {"キウイ"}
     describe                {"新鮮なキウイです"}
     category                {"食品"}
+    brand                   {"ゼスプリ"}
     condition_id            {"1"}
     shipping_charge_id      {"1"}
     prefecture_id           {"1"}

@@ -26,6 +26,10 @@ describe Item do
       item.valid?
       expect(item.errors[:describe]).to include("is too long (maximum is 1000 characters)")
     end
+    it "brandが空でもOK" do
+      item = build(:item, brand: "")
+      expect(item).to be_valid
+    end
     it "priceが空ならNG" do
       item = build(:item, price: nil)
       item.valid?
