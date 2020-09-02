@@ -2,19 +2,33 @@
   .content__image
     - item.images.each do |image|
       = image_tag image.image.url
+  %p ＜商品名＞
   .content__name
     = item.name
+  %p ＜商品説明＞
   .content__describe
     = item.describe
+  %p ＜カテゴリー＞
+  .content__category
+    = item.category
+  %p ＜ブランド＞
+  .content__brand
+    = item.brand
+  %p ＜状態＞
   .content__condition
     = item.condition.condition
+  %p ＜配送料の負担＞
   .content__shipping_charge
     = item.shipping_charge.defrayer
+  %p ＜発送元の地域＞
   .content__prefecture
     = item.prefecture.name
+  %p ＜発送までの日数＞
   .content__delivery_date
     = item.delivery_date.date
+  %p ＜販売価格＞
   .content__price
     = item.price
-  
+  %br
+  %br
 

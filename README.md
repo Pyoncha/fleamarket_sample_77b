@@ -63,11 +63,12 @@ Things you may want to cover:
  | name | string | null:false |
  | price | integer | null:false |
  | describe | text | null:false |
- | condition | string | null:false |
- | shipping_charge | string | null:false |
- | prefecture | string | null:false |
- | delivery_date | string | null:false |
- | user_id | references | null:false, foreign_key:true |
+ | condition_id | integer | null:false |
+ | shipping_charge_id | integer | null:false |
+ | prefecture_id | integer | null:false |
+ | delivery_date_id | integer | null:false |
+ | saler_id | references | null:false, foreign_key:true |
+ | buyer_id | references | null:false, foreign_key:true |
  | category_id | references | null:false, foreign_key:true |
  | brand_id | references | foreign_key:true |
 
