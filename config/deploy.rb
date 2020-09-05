@@ -19,6 +19,8 @@ set :keep_releases, 5
 
 set :linked_files, %w{ config/master.key }
 
+set :branch, ENV['BRANCH'] || "master"
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
