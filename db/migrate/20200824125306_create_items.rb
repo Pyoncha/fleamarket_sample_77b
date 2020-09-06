@@ -12,14 +12,15 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :delivery_date_id, null: false
 
       # 出品機能実装につきbuyer_idをintegerで仮置き本番はreference
+      # 商品一覧表示で売れ切れ判定として使用
       t.integer :buyer_id
+      t.references :user, null: false, foreign_key: true
 
       # category, brandをstringで仮置き
       t.string :category, null: false
       t.string :brand
 
       # Userモデル、Categoryモデル、Brandモデル作成時に使用
-      # t.references :user, null: false, foreign_key: true
       # t.references :category, null: false, foreign_key: true
       # t.references :brand, foreign_key: true
 
