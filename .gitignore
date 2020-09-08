@@ -28,3 +28,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore image files.
+/public/uploads/*
+
+/db/fixtures/images/*
