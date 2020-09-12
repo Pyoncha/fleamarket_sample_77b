@@ -53,8 +53,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
-  # user情報仮置きとして使用
-  gem 'seed-fu'
+  
 end
 
 group :development do
@@ -94,3 +93,6 @@ gem 'fog-aws'
 gem 'font-awesome-sass'
 
 gem 'active_hash'
+
+# user情報仮置きとして使用
+gem 'seed-fu'
