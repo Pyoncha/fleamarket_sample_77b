@@ -1,10 +1,12 @@
 class Item < ApplicationRecord
-  belongs_to :user
+  # ↓レビュー動作確認用(オプション)
+  belongs_to :user, optional: true
   has_many :images
   # belongs_to :category
   # belongs_to :brand
 
-  belongs_to :buyer, class_name: "User"
+  # ↓レビュー動作確認用(オプション)
+  belongs_to :buyer, class_name: "User", optional: true
 
   # fields_forメソッドを利用する際に、親モデルの中に書く必要があるメソッド
   accepts_nested_attributes_for :images, allow_destroy: true

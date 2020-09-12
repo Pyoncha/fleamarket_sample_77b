@@ -14,7 +14,9 @@ class CreateItems < ActiveRecord::Migration[5.2]
       # 出品機能実装につきbuyer_idをintegerで仮置き本番はreference
       # 商品一覧表示で売れ切れ判定として使用
       t.integer :buyer_id
-      t.references :user, null: false, foreign_key: true
+      # t.references :user, null: false, foreign_key: true
+      # ↓レビュー動作確認用
+      t.references :user, foreign_key: true
 
       # category, brandをstringで仮置き
       t.string :category, null: false
