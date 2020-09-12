@@ -1,32 +1,115 @@
 .form
-  = form_for @item do |f|
-    %p 商品画像（必須）
-    .post__drop__box__container
-      .prev-content
-      .label-content
-        %label{for: "item_images_attributes_0_image", class: "abel-box", id: "label-box--0"}
-          %pre.label-box__text-visible クリックしてファイルをアップロード
-      .hidden-content
-        = f.fields_for :images do |i|
-          = i.file_field :image, class: "hidden-field", name: "item[images_attributes][#{i.index}][image]"
-    %p 商品名（必須）
-    = f.text_field :name, class: 'input-box__name', placeholder: '40文字まで'
-    %p 商品の説明（必須）
-    = f.text_field :describe, class: 'input-box__describe', placeholder: '商品の説明（必須1,000文字以内）'
-    %p カテゴリー（必須）
-    = f.text_field :category, class: 'input-box__category', placeholder: 'カテゴリーを入力'
-    %p ブランド（任意）
-    = f.text_field :brand, class: 'input-box__brand', placeholder: 'ブランドを入力'
-    %p 商品の状態（必須）
-    = f.collection_select(:condition_id, Condition.all, :id, :condition, {include_blank: "---"}, {class: "condition-box", id: "condition-box"})
-    %p 配送料の負担（必須）
-    = f.collection_select(:shipping_charge_id, ShippingCharge.all, :id, :defrayer, {include_blank: "---"}, {class: "shipping_charge-box", id: "shipping_charge-box"})
-    %p 発送元の地域（必須）
-    = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "prefecure-box", id: "prefecure-box"})
-    %p 発送までの日数（必須）
-    = f.collection_select(:delivery_date_id, DeliveryDate.all, :id, :date, {include_blank: "---"}, {class: "delivery_date-box", id: "delivery_date-box"})   
-    %p 販売価格（必須）
-    = f.number_field :price, class: 'input-box__price', placeholder: '¥0'
-    %br
-    %br
-    = f.submit '送信', class: 'send-btn'
+  %section.form__main
+    = form_with model: @item do |f|
+      %h2.form__main__head
+        商品の情報を入力
+      .form__main__content
+        .form__main__content__upload
+          %h3.form__main__content__upload__head
+            出品画像
+            %span.require 必須
+          %p 最大10枚までアップロードできます
+          .form__main__content__upload__container
+            .prev-content
+            .label-content
+              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                %pre.label-box__text-visible クリックしてファイルをアップロード
+                -# %i.fa.fa-camera
+            .hidden-content
+              = f.fields_for :images do |i|
+                = i.file_field :image, class: "hidden-field", name: "item[images_attributes][#{i.index}][image]"
+        
+        .form__main__content__sell
+          .form__main__content__sell__form
+            .form__main__content__title
+              = f.label :name, "商品名"
+              %span.form__main__content__require
+                必須
+            = f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "form__main__content__name"
+          
+          .form__main__content__sell__form
+            .form__main__content__title
+              = f.label :describe, "商品の説明"
+              %span.form__main__content__require
+                必須
+            = f.text_area :describe, placeholder: "商品の説明（必須 1,000文字以内)", class: "form__main__content__describe"
+
+        .form__main__content__describe
+          %h3.show-sub-head
+            商品の詳細
+          .form__main__content__describe__form
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :category, "カテゴリー"
+                %span.form__main__content__require
+                  必須
+              = f.text_field :category, placeholder: "仮", class: "form__main__content__category"
+
+          .form__main__content__form-group
+              .form__main__content__title
+                = f.label :brand, "ブランド"
+                %span.form__main__content__require
+                  必須
+              = f.text_field :category, placeholder: "例）シャネル", class: "form__main__content__category"
+
+
+
+
+
+
+
+
+
+          .form__main__content__describe
+            %label
+              商品の説明
+              %span.require 必須
+            %div
+              = f.text_field :describe, placeholder: "商品の説明（必須 1,000文字以内)", class: "form__main__content__describe"
+        
+        .form__main__content__category
+          %label
+            カテゴリー
+            %span.require 必須
+          %div
+            = f.text_field :category, placeholder: "選択してください", class: "form__main__content__category"
+        .form__main__content__brand
+          %label
+            ブランド
+            %span.option 任意
+          %div
+            = f.text_field :brand, placeholder: "例）シャネル", class: "form__main__content__brand"
+        .form__main__content__condition
+          %label
+            商品の状態
+            %span.require 必須
+          %div
+            = f.collection_select(:condition_id, Condition.all, :id, :condition, {include_blank: "選択してください"}, {class: "form__main__content__condition", id: "condition-box"})
+        .form__main__content__shipping_charge
+          %label
+            配送料の負担
+            %span.require 必須
+          %div
+            = f.collection_select(:shipping_charge_id, ShippingCharge.all, :id, :defrayer, {include_blank: "選択してください"}, {class: "form__main__content__shipping_charge", id: "shipping_charge-box"})
+        .form__main__content__prefecture
+          %label
+            発送元の地域
+            %span.require 必須
+          %div
+            = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"}, {class: "form__main__content__prefecture", id: "prefecure-box"})
+        .form__main__content__delivery_date
+          %label
+            発送までの日数
+            %span.require 必須
+          %div
+            = f.collection_select(:delivery_date_id, DeliveryDate.all, :id, :date, {include_blank: "選択してください"}, {class: "form__main__content__delivery_date", id: "delivery_date-box"})
+        .form__main__content__price
+          %label
+            販売価格
+            %span.require 必須
+          %div
+            = f.number_field :price, placeholder: "0", class: "form__main__content__price"
+
+        .form__main__content__btn
+          %div
+            = f.submit "出品する",class: "btn-default__btn-red"

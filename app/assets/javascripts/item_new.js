@@ -1,17 +1,17 @@
 $(document).on('turbolinks:load', function(){
   $(function(){
 
-    //プレビューのhtmlを定義
+    // プレビューの表示
     function buildHTML(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
-                    <div class="upper-box">
+                    <div class="preview-box__upper-box">
                       <img src="" alt="preview" width="114" height="80" >
                     </div>
-                    <div class="lower-box">
-                      <div class="update-box">
+                    <div class="preview-box__lower-box">
+                      <div class="preview-box__lower-box__update-box">
                         <label class="edit_btn">編集</label>
                       </div>
-                      <div class="delete-box" id="delete_btn_${count}">
+                      <div class="preview-box__lower-box__delete-box" id="delete_btn_${count}">
                         <span>削除</span>
                       </div>
                     </div>
@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function(){
       return html;
     }
 
-    //画像投稿フォルダの定義
+    // 画像投稿フォルダの追加
     function buildInputImage(index) {
       var inputImage = `<input class="hidden-field" type="file" 
                         name="item[images_attributes][${index}][image]"
@@ -27,15 +27,16 @@ $(document).on('turbolinks:load', function(){
       return inputImage;
     }
 
-    let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-
-    // ラベルのwidth操作
+    // ラベル幅調整
     function setLabel() {
-      //プレビューボックスのwidthを取得し、maxから引くことでラベルのwidthを決定
+      //プレビューボックスのwidthを取得し、初期サイズ（620px）から引くことでラベルwidth決定
       var prevContent = $('.label-content').prev();
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
       $('.label-content').css('width', labelWidth);
     }
+
+    // file番号の定義
+    let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() {
@@ -76,7 +77,7 @@ $(document).on('turbolinks:load', function(){
         //ラベルのwidth操作
         setLabel();
         //ラベルのidとforの値を変更
-        if(count < 5){
+        if(count < 10){
           //プレビューの数でラベルのオプションを更新する
           $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_image`});
         }
@@ -84,7 +85,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     // 画像の削除
-    $(document).on('click', '.delete-box', function() {
+    $(document).on('click', '.preview-box__lower-box__delete-box', function() {
       var count = $('.preview-box').length;
       setLabel(count);
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
