@@ -30,4 +30,3 @@
 
 # Ignore image files.
 /public/uploads/*
-/db/fixtures/images/*
