@@ -13,7 +13,7 @@ Item.seed do |s|
 end
 Item.seed do |s|
   s.id = 2
-  s.name = "本マグロ"
+  s.name = "本マグロ（青森からの直送品で新鮮うまい）"
   s.price = "1200000"
   s.describe = "さばいていく！"
   s.condition_id = 1
