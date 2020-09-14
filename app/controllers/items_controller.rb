@@ -18,6 +18,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def purchase
+    @items = Item.find(1)
+    @shipping_charge = @items.shipping_charge.defrayer
+  end
+
   private
 
   def item_params

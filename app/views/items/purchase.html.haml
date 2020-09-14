@@ -1,0 +1,51 @@
+.purchase__content.body
+  .purchase__content__head
+    = link_to root_path , class:'furima--logo' do
+      = image_tag 'logo/logo.png', alt: 'FURIMAロゴ', class: 'logo'
+  .purchase__content__main
+    .purchase__content__main__boxes
+      %section.box
+        %h2.title 購入内容の確認
+      %section.box
+        .item--title
+          .item--image
+            %figure.image
+              - @items.images.each do |image|
+                = image_tag image.image.url, alt: 'イメージ画像'
+          .item--detail
+            %p.name=@items.name
+            %p.prices
+              %span.shipping__charge=@shipping_charge
+              %span.price="¥#{@items.price}"
+      %section.box
+        .payment__amount
+          %span 支払い金額
+          %span.payment="¥#{@items.price}"
+      %section.box
+        .user__info__box
+          .user__info
+            %h3.subtitle 支払い方法
+          = link_to "#", class:'entry__box' do
+            %span.entry 登録してください
+      %section.box
+        .user__info__box
+          .user__info
+            %h3.subtitle 配送先
+          = link_to "#", class:'entry__box' do
+            %span.entry 登録してください
+      %section.box
+        .purchase
+          %button.purchase__box.btn 購入する
+  .purchase__content__footer
+    .contents__box
+      %ul.contents
+        %li.content
+          = link_to "プライバシーポリシー", "#"
+        %li.content
+          = link_to "メルカリ利用規約", "#"
+        %li.content
+          = link_to "特定商取引に関する表記", "#"
+    = link_to "#", class:"footer__image" do
+      = image_tag 'logo/logo-white.png', alt: 'FURIMAロゴ', class:'logo'
+    %p.company__name ©️ Furima, Inc.
+
