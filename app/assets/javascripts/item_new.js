@@ -35,7 +35,7 @@ $(function(){
   }
 
   // file番号の定義
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [1,2,3,4,5];
 
   // プレビューの追加
   $(document).on('change', '.hidden-field', function() {
@@ -68,15 +68,15 @@ $(function(){
       //イメージを追加
       $(`#preview-box__${id} img`).attr('src', `${image}`);
       var count = $('.preview-box').length;
-      //プレビューが10個あったらラベルを隠す 
-      if (count == 10) { 
+      //プレビューが5個あったらラベルを隠す 
+      if (count == 5) { 
         $('.label-content').hide();
       }
 
       //ラベルのwidth操作
       setLabel();
       //ラベルのidとforの値を変更
-      if(count < 10){
+      if(count < 5){
         //プレビューの数でラベルのオプションを更新する
         $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_image`});
       }
