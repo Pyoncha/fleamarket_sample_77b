@@ -1,0 +1,108 @@
+@import 'mixin/frames';
+@import 'config/colors';
+
+.registration__box {
+  .registration {
+    .user__info__box {
+      .card__info {
+        font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+        align-items: center;
+        display: flex;
+        .subtitle {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.4em;
+        }
+        .mandatory {
+          margin-left: 8px;
+          font-size: 12px;
+          padding: 0 4px;
+          background-color: $red_pink;
+          color: $white;
+          border-radius: 2px;
+          display: inline-block;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 1.4em;
+        }
+      }
+      .text__field__style {
+        align-items: center;
+        display: inline-flex;
+        width: 100%;
+        margin-top: 16px;
+        color: #222;
+        font-size: 16px;
+        .input--area {
+          display: inline-flex;
+          position: relative;
+          width: inherit;
+          .text__field {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 48px;
+            margin: 0;
+            padding: 0 16px;
+            width: inherit;
+          }
+        }
+      }
+      img {
+        max-height: 20px;
+        max-width: 44px;
+        margin: 5px;
+        width: auto;
+        vertical-align: middle;
+      }
+      .expiration__date {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 16px;
+        align-items: center;
+        .select__box__date {
+          font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+          display: inline-flex;
+          align-items: center;
+          width: 100%;
+          flex: 1 1 0%;
+          &__form {
+            display: inline-block;
+            position: relative;
+            width: inherit;
+            select {
+              background-color: #fff;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              color: #222;
+              font-size: 16px;
+              height: 48px;
+              line-height: 1;
+              margin: 0;
+              outline: none;
+              padding: 0 56px 0 16px;
+              width: 100%;
+            } 
+          }
+        }
+        .month {
+          width: 46px;
+          text-align: center;
+        }
+        .year {
+          width: 30px;
+          text-align: right;
+        }
+      }
+    }
+    .card__sizing {
+      font-size: 0;
+    }
+    .user__info__box:not(:first-child) {
+      margin-top: 28px;
+    }
+  }
+  .new {
+    border-bottom: none;
+  }
+}

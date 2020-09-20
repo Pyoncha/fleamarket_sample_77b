@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create] do
     get 'purchase'
   end
+  resources :credit_cards, only: [:index, :new]
+  resources :user_addresses, only: [:new, :edit]
 end
