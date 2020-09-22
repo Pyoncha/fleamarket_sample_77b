@@ -18,6 +18,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def purchase
+    # 商品購入サーバーサイド作成時に本実装（現在は仮置き）
+    @item = Item.find(1)
+    @shipping_charge = @items.shipping_charge.defrayer
+  end
+
   private
 
   def item_params

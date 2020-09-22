@@ -1,0 +1,214 @@
+@import "mixin/frames";
+@import "config/colors";
+
+.body{
+  position: relative;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  min-height: 100%;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .purchase__content__head {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      text-decoration: none;
+      color: inherit;
+      .logo {
+        height: 49px;
+        width: 185px;
+      }
+    }
+  }
+  .purchase__content__main {
+    background-color: rgb( 255, 255, 255);
+    max-width: 700px;
+    width: 100%;
+    margin: 0px auto;
+    &__boxes {
+      position: relative;
+      .box {
+        max-width: 375px;
+        padding: 32px 16px;
+        margin: 0 auto;
+        .title {
+          @include purchase__title;
+        }
+        .item--title {
+          display: flex;
+          justify-content: space-between;
+          .item--image {
+            display: flex;
+            justify-content: center;
+            height: 80px;
+            width: 80px;
+            align-items: center;
+            .image {
+              height: 80px;
+              width: 80px;
+              border-radius: 4px;
+              display: inline-block;
+              margin: 0;
+              overflow: hidden;
+              img {
+                height: 100%;
+                width: 100%;
+              }
+            }
+          }
+          .item--detail {
+            width: 100%;
+            margin-left: 16px;
+            .name {
+              font-size: 14px;
+              line-height: 1.4em;
+              margin-bottom: 8px;
+            }
+            .prices {
+              text-align: right;
+              .shipping__charge {
+                font-size: 12px;
+              }
+              .price {
+                font-size: 15px;
+                font-weight: 600;
+                margin-left: 8px;
+              }
+            }
+          }
+        }
+        .payment__amount {
+          display: flex;
+          font-size: 18px;
+          font-weight: 600;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+          .payment {
+            font-size: 24px;
+          }
+        }
+        .user__info__box {
+          .user__info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            -webkit-box-pack: justify;
+            .subtitle {
+              font-size: 14px;
+              font-weight: 600;
+            }
+            .alter {
+              text-decoration: none;
+              font-size: 14px;
+              align-items: center;
+              color: $cyan;
+              cursor: pointer;
+              display: inline-flex;
+              line-height: 1.4em;
+            }
+          }
+          .credit__card {
+            opacity: 1;
+            pointer-events: auto;
+            p {
+              line-height: 1.4em;
+            }
+            img {
+              margin-top: 8px;
+              max-height: 32px;
+              max-width: 48px;
+              vertical-align: middle;
+            }
+          }
+          .user__address {
+            p {
+              line-height: 1.4em;
+            }
+          }
+          .entry__box {
+            color: $cyan;
+            display: flex;
+            align-items: center;
+            opacity: 1;
+            pointer-events: auto;
+            text-decoration: none;
+            .entry {
+              margin-left: 4px;
+            }
+          }
+          .entry__box:hover {
+            text-decoration: underline;
+            opacity: 0.7;
+          }
+        }
+        .enter {
+          .attention {
+            color: rgb(255, 2, 17);
+            line-height: 1.5;
+            margin-bottom: 24px;
+          }
+          &__box {
+            @include enter--button;
+          }
+          &__permit__box {
+            @extend .enter__box;
+            @include enter--permit--button;
+          }
+          &__permit__box:hover {
+            @include button--hover;
+          }
+          button {
+            @include button;
+          }
+        }
+      }
+      .box:not(:first-child) {
+        border-top: 1px solid rgb(245, 245, 245);
+      }
+      .box:last-of-type {
+        padding: 32px 16px 56px;
+      }
+    }
+  }
+  .purchase__content__footer {
+    padding: 40px 0px 41px;
+    margin-top: auto;
+    text-align: center;
+    .footer__contents__box {
+      .footer__contents {
+        display: inline-block;
+        margin: -16px 0px 40px -16px;
+        .footer__content {
+          display: inline-block;
+          margin: 16px 0px 0px 16px;
+          a {
+            font-size: 12px;
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      .logo {
+        height: 49px;
+        margin-bottom: 8px;
+        width: 185px;
+      }
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+}
