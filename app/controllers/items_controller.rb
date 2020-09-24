@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
 
+  before_action :set_item, only: [:show]
   before_action :set_parents, only: [:new, :create]
 
   def index
@@ -19,6 +20,9 @@ class ItemsController < ApplicationController
       flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
       render :new
     end
+  end
+
+  def show
   end
 
   def category_search
@@ -45,6 +49,10 @@ class ItemsController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

@@ -20,7 +20,7 @@ $(function(){
   // 孫のselectタグを追加
   function build_GrandChildSelect() {
     let grandchild_select = `
-                            <select name="post[category_id]" class="grandchild_category_id">
+                            <select name="item[category_id]" class="grandchild_category_id">
                               <option value="">選択してください</option>
                             </select>
                             `
