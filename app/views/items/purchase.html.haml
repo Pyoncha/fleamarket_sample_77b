@@ -1,0 +1,63 @@
+.contents.body
+  = render partial: 'frame_upper'
+  .purchase__content__main
+    .purchase__content__main__boxes
+      %section.box
+        %h2.title 購入内容の確認
+      %section.box
+        .item--title
+          .item--image
+            %figure.image
+              - @items.images.each do |image|
+                = image_tag image.image.url, alt: 'イメージ画像'
+          .item--detail
+            %p.name=@items.name
+            %p.prices
+              %span.shipping__charge=@shipping_charge
+              %span.price="¥#{@items.price}"
+      %section.box
+        .payment__amount
+          %span 支払い金額
+          %span.payment="¥#{@items.price}"
+      %section.box
+        .user__info__box
+          .user__info
+            %h3.subtitle 支払い方法
+            -# クレジットカード登録時の表示(27~28)
+            -# = link_to "/credit_cards", class:'alter' do
+            -#   %span 変更する
+            -# クレジットカード未登録時の表示(30~31)
+          = link_to "/credit_cards", class:'entry__box' do
+            %span.entry 登録してください
+          -# クレジットカード登録時の表示(33~39)
+          -# .credit__card
+          -#   %p クレジットカード
+          -#   %p ************0000
+          -#   %p
+          -#     有効期限
+          -#     01 / 30
+          -#   = image_tag 'card_logo/mastercard.svg', alt: 'mastercard', class: 'logo'
+      %section.box
+        .user__info__box
+          .user__info
+            %h3.subtitle 配送先
+            -# 配送先登録後の表示(45~46)
+            -# = link_to "#", class:'alter' do
+            -#   %span 変更する
+          -# 配送先未登録時の表示(48~49)
+          = link_to "/user_addresses/new", class:'entry__box' do
+            %span.entry 登録してください
+          -# 配送先登録後の表示(51~54)
+          -# .user__address
+          -#   %p 〒453-0014
+          -#   %p 愛知県 名古屋市中村区則武1丁目9−19 協和 名駅 ビル6階
+          -#   %p 手区明流男
+      %section.box
+        .enter
+          -# 未登録（カード及び配送先）(58~60)
+          %p.attention 支払い方法の入力を完了してください。
+          %p.attention 配送先の入力を完了してください。
+          %button.enter__box.btn 購入する
+          -# 登録後（カード及び配送先）(62)
+          -# %button.enter__permit__box.btn 購入する
+  = render partial: 'frame_bottom'

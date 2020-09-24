@@ -1,0 +1,12 @@
+.purchase__content__footer
+  .footer__contents__box
+    %ul.footer__contents
+      %li.footer__content
+        = link_to "プライバシーポリシー", "#"
+      %li.footer__content
+        = link_to "フリマ利用規約", "#"
+      %li.footer__content
+        = link_to "特定商取引に関する表記", "#"
+  = link_to root_path, class:"footer__image" do
+    = image_tag 'logo/logo-white.png', alt: 'FURIMAロゴ', class:'logo'
+  %p.company__name ©️ Furima, Inc.

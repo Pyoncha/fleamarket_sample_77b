@@ -1,0 +1,32 @@
+@mixin enter--button {
+  background-color: #ccc;
+  color: #888;
+  width: 100%;
+  font-size: 17px;
+  min-height: 48px;
+  padding: 0 24px;
+  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+}
+
+@mixin enter--permit--button {
+  background-color: #ea352d;
+  color: #fff;
+}
+
+@mixin button {
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+@mixin button--hover {
+  filter: brightness(90%)
+}
+
+@mixin purchase__title {
+  text-align: center;
+  display: block;
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: 600;
+}
