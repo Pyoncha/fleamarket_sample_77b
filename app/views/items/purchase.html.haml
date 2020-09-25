@@ -1,4 +1,4 @@
-.purchase__contents.body
+.contents.body
   = render partial: 'frame_upper'
   .purchase__content__main
     .purchase__content__main__boxes
@@ -8,17 +8,17 @@
         .item--title
           .item--image
             %figure.image
-              - @item.images.each do |image|
+              - @items.images.each do |image|
                 = image_tag image.image.url, alt: 'イメージ画像'
           .item--detail
-            %p.name=@item.name
+            %p.name=@items.name
             %p.prices
               %span.shipping__charge=@shipping_charge
-              %span.price="¥#{@item.price}"
+              %span.price="¥#{@items.price}"
       %section.box
         .payment__amount
           %span 支払い金額
-          %span.payment="¥#{@item.price}"
+          %span.payment="¥#{@items.price}"
       %section.box
         .user__info__box
           .user__info
