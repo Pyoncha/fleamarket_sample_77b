@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   # ↓レビュー動作確認用(オプション)
   belongs_to :user, optional: true
   has_many :images
-  # belongs_to :category
+  belongs_to :category
   # belongs_to :brand
 
   # ↓レビュー動作確認用(オプション)
@@ -22,7 +22,6 @@ class Item < ApplicationRecord
     validates :name, length: { maximum: 40 }
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
     validates :describe, length: { maximum: 1000 }
-    validates :category
     validates :condition_id
     validates :shipping_charge_id
     validates :prefecture_id

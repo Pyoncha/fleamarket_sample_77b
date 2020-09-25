@@ -193,6 +193,25 @@
           width: 100%;
           border-radius: 5px;
           border: 1px solid #ccc;
+          color: rgba(167, 162, 162, 0.925);
+        }
+
+        .child_category_id {
+          height: 45px;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          color: rgba(167, 162, 162, 0.925);
+          margin-top: 5px;
+        }
+
+        .grandchild_category_id {
+          height: 45px;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          color: rgba(167, 162, 162, 0.925);
+          margin-top: 5px;
         }
 
         &__brand {
