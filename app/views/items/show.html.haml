@@ -3,20 +3,70 @@
   = render partial: 'index_upper_signed_out'
 
 .show-main
-  .show-main__item-img
-    - @item.images.each do |image|
-      = image_tag image.image.url, alt: 'アイテムイメージ', class: "img"
-  .product__list__body
-    = @item.name    
-    .details
-      %ul
-        %li
-          = "#{@item.price}円（税込）"
-        %li
-          %h1 カテゴリー
-          = @item.category.parent.parent.name
-          = @item.category.parent.name
-          = @item.category.name
+  .show-main__content
+    .show-main__content__item-info
+      .show-main__content__item-info__item-box
+        .show-main__content__item-info__item-box__name
+          = @item.name
+        .show-main__content__item-info__item-box__image
+          - @item.images.each do |image|
+            = image_tag image.image.url, size: "140x140", alt: 'アイテムイメージ', class: "show-img"
+        .show-main__content__item-info__item-box__price
+          = "¥#{@item.price}"
+          .show-main__content__item-info__item-box__price-detail
+            （税込み）送料込み
+        .show-main__content__item-info__item-box__describe
+        .show-main__content__item-info__item-box__table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                %td
+                  -# = @item.user.nickname
+              %tr
+                %th
+                  カテゴリー
+                %td
+                  = @item.category.parent.parent.name
+                  %br
+                  = @item.category.parent.name
+                  %br
+                  = @item.category.name
+              %tr
+                %th
+                  ブランド
+                %td
+                  = @item.brand
+              %tr
+                %th
+                  商品のサイズ
+                %td
+                  -# ”仮置き表示”
+              %tr
+                %th
+                  商品の状態
+                %td
+                  -# = @product.condition_i18n
+              %tr
+                %th
+                  配送料の負担
+                %td
+                  -# = @product.send_price_i18n
+              %tr
+                %th
+                  発送元の地域
+                %td
+                  -# = @product.prefecture.name
+              %tr
+                %th
+                  発送日の目安
+                %td
+                  -# = @product.ship_day_i18n
+
+        .show-main__content__item-info__item-box__optional-area
+
+      .show-main__content__item-info__comment-box
 
 .footer
   = render partial: 'index_bottom'
