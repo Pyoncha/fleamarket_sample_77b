@@ -42,29 +42,35 @@
                 %th
                   商品のサイズ
                 %td
-                  -# ”仮置き表示”
+                  表示(仮)
               %tr
                 %th
                   商品の状態
                 %td
-                  -# = @product.condition_i18n
+                  = @item.condition.condition
               %tr
                 %th
                   配送料の負担
                 %td
-                  -# = @product.send_price_i18n
+                  = @item.shipping_charge.defrayer
               %tr
                 %th
                   発送元の地域
                 %td
-                  -# = @product.prefecture.name
+                  = @item.prefecture.name
               %tr
                 %th
                   発送日の目安
                 %td
-                  -# = @product.ship_day_i18n
+                  = @item.delivery_date.date
 
         .show-main__content__item-info__item-box__optional-area
+      
+      .show-main__content__item-info__edit-link
+        .show-main__content__item-info__edit-link__edit-box
+          = link_to edit_item_path(@item.id) do
+            編集する
+        .show-main__content__item-info__edit-link__delete-box
 
       .show-main__content__item-info__comment-box
 

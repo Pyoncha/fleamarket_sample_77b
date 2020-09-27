@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :edit]
   before_action :set_parents, only: [:new, :create]
 
   def index
@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
   end
 
   def purchase
