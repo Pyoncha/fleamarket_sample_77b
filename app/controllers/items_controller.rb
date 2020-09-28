@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show, :edit]
-  before_action :set_parents, only: [:new, :create]
+  before_action :set_item, only: [:show, :edit, :destroy]
+  before_action :set_parents, only: [:new, :create, :edit]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(5)
@@ -28,6 +28,14 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def destroy
+    if @item.destroy
+      redirect_to root_path, notice: '削除しました'
+    else
+      render :show
+    end
+  end
+
   def purchase
     # 商品購入サーバーサイド作成時に本実装（現在は仮置き）
     @item = Item.find(1)
@@ -35,7 +43,7 @@ class ItemsController < ApplicationController
   end
 
   def category_search
-    #ajax通信を開始
+    #ajax通信
     respond_to do |format|
       format.html
       format.json do
