@@ -1,6 +1,10 @@
 .header
   -# ログイン有無でヘッダー部分を変える
-  = render partial: 'index_upper_signed_out'
+  - if user_signed_in?
+    = render partial: 'index_upper_signed_in'
+  - else
+    = render partial: 'index_upper_signed_out'
+  
 
 .main
   %section.main__visual
