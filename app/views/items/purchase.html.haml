@@ -8,17 +8,17 @@
         .item--title
           .item--image
             %figure.image
-              - @items.images.each do |image|
+              - @item.images.each do |image|
                 = image_tag image.image.url, alt: 'イメージ画像'
           .item--detail
-            %p.name=@items.name
+            %p.name=@item.name
             %p.prices
               %span.shipping__charge=@shipping_charge
-              %span.price="¥#{@items.price}"
+              %span.price="¥#{@item.price}"
       %section.box
         .payment__amount
           %span 支払い金額
-          %span.payment="¥#{@items.price}"
+          %span.payment="¥#{@item.price}"
       %section.box
         .user__info__box
           .user__info

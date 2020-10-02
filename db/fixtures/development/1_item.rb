@@ -9,7 +9,7 @@ Item.seed do |s|
   s.delivery_date_id = 2
   s.buyer_id = 2
   s.user_id = 1
-  s.category = "-"
+  s.category_id = 4
 end
 Item.seed do |s|
   s.id = 2
@@ -22,7 +22,7 @@ Item.seed do |s|
   s.delivery_date_id = 3
   s.buyer_id = 5
   s.user_id = 2
-  s.category = "-"
+  s.category_id = 5
 end
 Item.seed do |s|
   s.id = 3
@@ -35,7 +35,7 @@ Item.seed do |s|
   s.delivery_date_id = 1
   s.buyer_id = nil
   s.user_id = 3
-  s.category = "-"
+  s.category_id = 4
 end
 Item.seed do |s|
   s.id = 4
@@ -48,7 +48,7 @@ Item.seed do |s|
   s.delivery_date_id = 1
   s.buyer_id = nil
   s.user_id = 4
-  s.category = "-"
+  s.category_id = 3
 end
 Item.seed do |s|
   s.id = 5
@@ -61,7 +61,7 @@ Item.seed do |s|
   s.delivery_date_id = 1
   s.buyer_id = 4
   s.user_id = 5
-  s.category = "-"
+  s.category_id = 6
 end
 Item.seed do |s|
   s.id = 6
@@ -74,5 +74,5 @@ Item.seed do |s|
   s.delivery_date_id = 3
   s.buyer_id = nil
   s.user_id = 2
-  s.category = "-"
+  s.category_id = 3
 end
