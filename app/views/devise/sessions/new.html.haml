@@ -1,17 +1,45 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.purchase__contents.body
+  = render partial: 'items/frame_upper'
+  .body__signin
+    .single-container
+      %header.single-header
+        %h1.single-header__logo
+          = link_to "#" do
+            -# =link_to image_tag("logo.png",width:"180",height:"49"), root_path 
+      %main.single-main-login
+        %section.login-panel
+          .login-no-account
+            %p アカウントをお持ちでない方はこちら
+            =link_to "#", class: "btn-def--login" do
+              新規会員登録
+          .login-form-inner
+            =link_to "#", class: "btn-def--facebook" do
+              %i.fab.fa-facebook-f 
+              %span Facebookでログイン
+            = link_to "#", method: :post, class: "btn-def--google" do
+              %i.fab.fa-google
+              %span Googleでログイン
+            = link_to "#", method: :post, class: "btn-def--apple" do
+              %i.fab.fa-apple
+              %span Appleでログイン        
+            
+          .login-form-inner
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .field
+                = f.label :email
+                %br/
+                = f.email_field :email, {autofocus: true, autocomplete: "email" ,placeholder: "メールアドレス",class:'form-group__input'}
+              .field
+                = f.label :password
+                %br/
+                = f.password_field :password, {autocomplete: "current-password" ,placeholder: "パスワード",class:'form-group__input',id:"password"}
+              - if devise_mapping.rememberable?
+                .field
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+              .actions
+                = f.submit 'ログイン', class:"form-group__login"
+              .purchase__content__main
+                .purchase__content__main__boxes
+                = render partial: 'items/frame_bottom'
+              

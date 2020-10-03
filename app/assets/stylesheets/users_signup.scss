@@ -1,11 +1,4 @@
-//.purchase__content__head{
-//  width:180px;
-//  margin :0 auto;
-//  background-color: rgb(245, 245, 245);
-//  .logo{
-//    margin-top:20px;
-//}
-//}
+
 .single__body{
   margin:0;
   padding:0;
@@ -13,6 +6,7 @@
 
   .single__main{
     width: 600px;
+    min-height:100%;
     margin: 0 auto;
     background-color: #fff;
   
@@ -51,18 +45,19 @@
       text-align: left;
       margin-left:130px;
       color:grey;
+      line-height:45px;
 
     }
     &__form__main{
       text-align: left;
-      margin-top:10px;
-      margin-left: 100px;
+      margin:10px 0 5px 100px;;
       font-weight: bold;
     }
     &__form__info {
       font-size:12px;
       text-align:left;
       margin-left: 100px;
+      line-height:20px;
     }
   }
   .field{
@@ -91,9 +86,9 @@
     }
   }
     .year,.month,.day{
-      width: 65px;
+      width: 70px;
       height: 40px;
-      margin:0 5px 0 10px;
+      margin:0 1px 0 10px;
      }
    
   }
@@ -106,7 +101,8 @@
     width:300px;
     height: 45px;
     color:white;
-    background-color: #ff0211;
+    background-color:#3ccace;
+    border:1px;
   } 
 }
 
