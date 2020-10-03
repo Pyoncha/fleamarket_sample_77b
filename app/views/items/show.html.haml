@@ -120,7 +120,7 @@
         - else
           .show-main__contents__main-content__item-info__purchase-link
             .show-main__contents__main-content__item-info__purchase-link__purchase-box
-              = link_to '#', class: "purchase-btn" do
+              = link_to item_purchase_path(@item.id), class: "purchase-btn" do
                 購入画面に進む
 
         .show-main__contents__main-content__item-info__comment-box
