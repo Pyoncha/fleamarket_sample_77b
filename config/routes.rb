@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
 
+
+  devise_for :users,controller:  {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+   }
+
+
   # ↓詳細ページ用のログアウト機能として仮置き
   devise_for :users
+
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
