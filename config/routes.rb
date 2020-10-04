@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   devise_for :users,controller:  {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
+
   }
-  # こちらも同じです
+
     devise_scope :user do
       get 'addresses', to: 'users/registrations#new_address'    
       post 'addresses', to: 'users/registrations#create_address'    
@@ -17,6 +18,11 @@ Rails.application.routes.draw do
 
   # ↓詳細ページ用のログアウト機能として仮置き
   # ↑競合してしまうので一つにしました 橋本
+
+   }
+
+
+ 
   
   # devise_for :users,controller:  {
   #   sessions: 'users/sessions',

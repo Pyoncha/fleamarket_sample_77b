@@ -30,3 +30,7 @@
 
 # Ignore image files.
 /public/uploads/*
+
+
+
+.DS_Store
