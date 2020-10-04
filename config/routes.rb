@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # ↓詳細ページ用のログアウト機能として仮置き
   # ↑競合してしまうので一つにしました 橋本
 
-   }
+   
 
 
  
