@@ -4,15 +4,25 @@ Rails.application.routes.draw do
   devise_for :users,controller:  {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
+
+  }
+
+    devise_scope :user do
+      get 'addresses', to: 'users/registrations#new_address'    
+      post 'addresses', to: 'users/registrations#create_address'    
+      get 'creditcards', to: 'users/registrations#new_creditcard'    
+      post 'creditcards', to: 'users/registrations#create_creditcard'  
+      get '/users/sign_out' => 'devise/sessions#destroy'
+    end
+  
+
+  # ↓詳細ページ用のログアウト機能として仮置き
+  # ↑競合してしまうので一つにしました 橋本
+
    }
 
 
-  # ↓詳細ページ用のログアウト機能として仮置き
-  devise_for :users
-
-  devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+ 
   
   # devise_for :users,controller:  {
   #   sessions: 'users/sessions',
