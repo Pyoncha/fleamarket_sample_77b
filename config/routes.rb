@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # ↓詳細ページ用のログアウト機能として仮置き
   devise_for :users
   devise_scope :user do
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   #   # ↓商品詳細ページ用のログアウト機能として仮置き
   #   get '/users/sign_out' => 'devise/sessions#destroy'
   # end
+
   root 'items#index'
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
     get 'purchase'
@@ -28,4 +29,5 @@ Rails.application.routes.draw do
   end
   resources :credit_cards, only: [:index, :new]
   resources :user_addresses, only: [:new, :edit]
+  
 end
