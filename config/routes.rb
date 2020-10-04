@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-
-  devise_for :users,controller:  {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-   }
-
-  devise_scope :user do
-    get 'addresses', to: 'users/registrations#new_address'    
-    post 'addresses', to: 'users/registrations#create_address'    
+# コンフリクトが起きたのでコメントアウトしてます。（橋本）
+  ##devise_for :users,controller:  {
+   # sessions: 'users/sessions',
+    #registrations: 'users/registrations'
+    }
+# こちらも同じです
+  #devise_scope :user do
+    #get 'addresses', to: 'users/registrations#new_address'    
+    #post 'addresses', to: 'users/registrations#create_address'    
     # get 'creditcards', to: 'users/registrations#new_creditcard'    
     # post 'creditcards', to: 'users/registrations#create_creditcard'  
   end
