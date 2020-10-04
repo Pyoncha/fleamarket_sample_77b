@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   # ↓レビュー動作確認用(オプション)
   belongs_to :user, optional: true
-  has_many :images
+  has_many :images, dependent: :destroy
   belongs_to :category
   # belongs_to :brand
 
