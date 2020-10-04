@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users,controller:  {
     sessions: 'users/sessions',
-    registrations: 'uers/registrations'
+    registrations: 'users/registrations'
    }
 
   devise_scope :user do
@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   end
   resources :credit_cards, only: [:index, :new]
   resources :user_addresses, only: [:new, :edit]
+  
 end
