@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show]
-  before_action :set_parents, only: [:new, :create]
+  before_action :set_item, only: [:show, :edit, :destroy]
+  before_action :set_parents, only: [:new, :create, :edit]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(5)
@@ -25,6 +25,17 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def destroy
+    if @item.destroy
+      redirect_to root_path, notice: '削除しました'
+    else
+      render :show
+    end
+  end
+
   def purchase
     # 商品購入サーバーサイド作成時に本実装（現在は仮置き）
     @item = Item.find(1)
@@ -32,7 +43,7 @@ class ItemsController < ApplicationController
   end
 
   def category_search
-    #ajax通信を開始
+    #ajax通信
     respond_to do |format|
       format.html
       format.json do
@@ -50,7 +61,8 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image])
+    # params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image])
+    params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
   def set_parents
