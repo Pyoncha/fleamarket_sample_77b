@@ -1,35 +1,39 @@
 .purchase__contents.body
   = render partial: 'items/frame_upper'
   .purchase__content__main
-  %h5 住所入力
-  = form_with model:@user_address, local: true do |f|
-    .field
-      .head_icon
-        必須
-      = f.label :郵便番号
-      = f.text_field :postal, placeholder: "例）123-4567", autofocus: true, autocomplete: "postal_code"
-    .filed
-      .head_icon
-        必須
-      = f.label :都道府県
-      = f.select :prefecture,{北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,新潟県:15,富山県:16,石川県:17,福井県:18,山梨県:19,長野県:20,岐阜県:21,静岡県:22,愛知県:23,三重県:24,滋賀県:25,京都府:26,大阪府:27,兵庫県:28,奈良県:29,和歌山県:30,鳥取県:31,島根県:32,岡山県:33,広島県:34,山口県:35,徳島県:36,香川県:37,愛媛県:38,高知県:39,福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47}, { include_blank: '選択してください' }
-    .filed
-      .head_icon
-        必須
-      = f.label :市町村
-      = f.text_field  :city, placeholder: "例）札幌市", autocomplete: "city"
-    .filed
-      .head_icon
-        必須
-      = f.label :番地
-      = f.text_field  :address, placeholder: "例）青葉1-1-1", autocomplete: "address"
-    .filed
-      .head_icon
-        任意
-      = f.label :建物名
-      = f.text_field  :building, placeholder: "例）柳ビル103", autocomplete: "building"
-    .field
-      = f.submit '次へ', class: "btn-default btn-red", url: "#"
+    .users__address__body
+      .users__address__body__box
+        .users__address__body__main
+          %h2 住所入力
+        = form_with model:@user_address, local: true do |f|
+          /.users__address__body__main__input
+          .filed  
+            = f.label :郵便番号
+            .head_icon
+              必須
+          = f.text_field :postal, placeholder: "例）123-4567", autofocus: true, autocomplete: "postal_code"
+          .filed
+            = f.label :都道府県
+            .head_icon
+              必須
+          = f.select :prefecture,{北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,新潟県:15,富山県:16,石川県:17,福井県:18,山梨県:19,長野県:20,岐阜県:21,静岡県:22,愛知県:23,三重県:24,滋賀県:25,京都府:26,大阪府:27,兵庫県:28,奈良県:29,和歌山県:30,鳥取県:31,島根県:32,岡山県:33,広島県:34,山口県:35,徳島県:36,香川県:37,愛媛県:38,高知県:39,福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47}, { include_blank: '選択してください' }
+          .filed
+            = f.label :市町村
+            .head_icon
+              必須
+          = f.text_field  :city, placeholder: "例）札幌市", autocomplete: "city"
+          .filed
+            = f.label :番地
+            .head_icon
+              必須
+          = f.text_field  :address, placeholder: "例）青葉1-1-1", autocomplete: "address"
+          .filed
+            = f.label :建物名
+            .head_icon-non
+              任意
+          = f.text_field  :building, placeholder: "例）柳ビル103", autocomplete: "building"
+          .filed
+            = f.submit '次へ', class: "btn-default btn-red", url: "#"
   .purchase__content__main__boxes
     = render partial: 'items/frame_bottom'
   

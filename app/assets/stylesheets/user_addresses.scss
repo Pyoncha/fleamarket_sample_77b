@@ -1,3 +1,97 @@
-// Place all the styles related to the user_addresses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+  
+  .users__address__body{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    .users__address__body__box{
+      margin :0 auto;
+      width :400px;
+      height: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      .users__address__body__main{
+        padding-top: 45px;
+        h2{
+          font-size:25px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+      
+    .filed{
+        display:flex;
+        margin-top: 30px;
+        margin-bottom:10px;
+        margin-left:50px;
+    }
+          // 必須アイコン
+          .head_icon{
+            background-color: #3ccace;
+            margin: 0 0 0 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 10px;
+            display: inline-block;  
+          }
+          // 任意のアイコン
+        .head_icon-non{
+          background-color: grey;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 10px;
+          display: inline-block;  
+        }  
+        
+        #postal{
+          width: 300px;
+          height: 35px;
+          padding-left:10px;
+          font-size: 14px;
+        }
+
+        
+       #prefecture{
+         width: 300px;
+         height: 35px;
+         padding-left:10px;
+         font-size: 14px;
+       }
+
+        #address{
+          width: 300px;
+          height: 35px;
+          padding-left:10px;
+          font-size: 14px;
+       }
+      
+       #city{
+        width: 300px;
+        height: 35px;
+        padding-left:10px;
+        font-size: 14px;
+       }
+        
+       #building{
+        width: 300px;
+        height: 35px;
+        padding-left:10px;
+        font-size: 14px;
+       }
+       
+       .btn-default{
+         background-color: #3ccace;
+         border:1px;
+         width: 300px;
+         height: 40px;
+         padding-left:10px;
+         font-size: 14px;
+         margin:25px 0px;
+       }
+      
+
+
