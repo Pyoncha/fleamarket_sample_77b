@@ -4,8 +4,10 @@
     .users__address__body
       .users__address__body__box
         .users__address__body__main
-          %h2 住所入力
+          %h2 住所情報登録
         = form_with model:@user_address, local: true do |f|
+    -# 伊藤足し
+          = render "devise/shared/error_messages", resource: @address
           .filed
             = f.label :お名前（全角）
             .head_icon
@@ -18,7 +20,6 @@
               必須
           = f.text_field :first_name_kana, {placeholder:"例）ヤマダ", autocomplete: "first_name_kana",class:"field__name__input"}
           = f.text_field :last_name_kana, {placeholder:"例）タロウ", autocomplete: "last_name_kana",class:"field__name__input"}
-  
           .filed  
             = f.label :郵便番号
             .head_icon
@@ -46,8 +47,8 @@
           = f.text_field  :building, placeholder: "例）柳ビル103", autocomplete: "building"
           .filed
             = f.label :電話番号
-            .head_icon
-              必須
+            .head_icon-non
+              任意
           = f.text_field :phone_number, placeholder: "例）0120-345-6789", autocomplete: "phone_number"
           .filed
           .filed__line

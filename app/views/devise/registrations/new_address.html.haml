@@ -29,7 +29,7 @@
       = f.label :建物名
       = f.text_field  :building, placeholder: "例）柳ビル103", autocomplete: "building"
     .field
-      = f.submit '次へ', class: "btn-default btn-red", url: "#"
+      = f.submit '次へ', class: "btn-default btn-red", url: addresses_path
   .purchase__content__main__boxes
     = render partial: 'items/frame_bottom'
 = render "devise/shared/links"
