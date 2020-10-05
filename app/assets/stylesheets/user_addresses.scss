@@ -4,6 +4,8 @@
     margin: 0px;
     padding: 0px;
     text-decoration: none;
+    
+
     .users__address__body__box{
       margin :0 auto;
       width :400px;
@@ -25,6 +27,7 @@
         margin-top: 30px;
         margin-bottom:10px;
         margin-left:50px;
+        
     }
           // 必須アイコン
           .head_icon{
@@ -46,7 +49,48 @@
           font-size: 10px;
           display: inline-block;  
         }  
+        #first_name{
+          display:flex;
+          width: 130px;
+          height: 35px;
+          font-size: 14px;
+          margin-right:20px;
+          margin-left:15px;
+          display: inline-block;
+          
+        }
+
+        #last_name{
+            display:flex;
+            width: 130px;
+            height: 35px;
+            font-size: 14px;
+            margin-right:20px;
+            margin-left:15px;
+            display: inline-block;
+          }
         
+        #first_name_kana{
+          display:flex;
+          width: 130px;
+          height: 35px;
+          font-size: 14px;
+          margin-right:20px;
+          margin-left:15px;
+          display: inline-block;
+          
+        }
+
+        #last_name_kana{
+            display:flex;
+            width: 130px;
+            height: 35px;
+            font-size: 14px;
+            margin-right:20px;
+            margin-left:15px;
+            display: inline-block;
+        }
+
         #postal{
           width: 300px;
           height: 35px;
@@ -82,7 +126,18 @@
         padding-left:10px;
         font-size: 14px;
        }
-       
+
+       #phone_number{
+        width: 300px;
+        height: 35px;
+        padding-left:10px;
+        font-size: 14px;
+       }
+
+
+       .filed__line{
+         border-top: 2px solid #eee;
+       }
        .btn-default{
          background-color: #3ccace;
          border:1px;
@@ -90,7 +145,7 @@
          height: 40px;
          padding-left:10px;
          font-size: 14px;
-         margin:25px 0px;
+         margin:40px 0px;
        }
       
 

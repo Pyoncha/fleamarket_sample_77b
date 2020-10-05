@@ -6,7 +6,19 @@
         .users__address__body__main
           %h2 住所入力
         = form_with model:@user_address, local: true do |f|
-          /.users__address__body__main__input
+          .filed
+            = f.label :お名前（全角）
+            .head_icon
+              必須
+          = f.text_field :first_name, {placeholder:"例）山田", autocomplete: "first_name",class:"field__name__input"}
+          = f.text_field :last_name, {placeholder:"例）太郎", autocomplete: "last_name",class:"field__name__input"}
+          .filed
+            = f.label :お名前カナ（全角）
+            .head_icon
+              必須
+          = f.text_field :first_name_kana, {placeholder:"例）ヤマダ", autocomplete: "first_name_kana",class:"field__name__input"}
+          = f.text_field :last_name_kana, {placeholder:"例）タロウ", autocomplete: "last_name_kana",class:"field__name__input"}
+  
           .filed  
             = f.label :郵便番号
             .head_icon
@@ -33,6 +45,12 @@
               任意
           = f.text_field  :building, placeholder: "例）柳ビル103", autocomplete: "building"
           .filed
+            = f.label :電話番号
+            .head_icon
+              必須
+          = f.text_field :phone_number, placeholder: "例）0120-345-6789", autocomplete: "phone_number"
+          .filed
+          .filed__line
             = f.submit '次へ', class: "btn-default btn-red", url: "#"
   .purchase__content__main__boxes
     = render partial: 'items/frame_bottom'
