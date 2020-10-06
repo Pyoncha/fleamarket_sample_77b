@@ -8,13 +8,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   
 
-   def new
-    @user = User.new
-   end
-  
+  def new
+   @user = User.new
+  end
+
 # 伊藤足し
-   def create
-    @user = User.new(sign_up_params)
+  def create
+    @user = User.new
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
@@ -23,21 +23,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @address = @user.build_address
     render :new_address
-    end
+  end
+
+  
     
 #伊藤足し
-    def create_address
-      @user = User.new(session["devise.regist_data"]["user"])
-      @address = Address.new(address_params)
-      unless @address.valid?
-        flash.now[:alert] = @address.errors.full_messages
-        render :new_address and return
-      end
-      @user.build_address(@address.attributes)
-      @user.save
-      session["devise.regist_data"]["user"].clear
-      sign_in(:user, @user)
+  def create_address
+    @user = User.new(session["devise.regist_data"]["user"])
+    @address = Address.new(address_params)
+    unless @address.valid?
+      flash.now[:alert] = @address.errors.full_messages
+      render :new_address and return
     end
+    @user.build_address(@address.attributes)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+  end
+
+
 
 #伊藤足し
   protected

@@ -18,7 +18,8 @@
       %li.header__list__left__items
         = link_to "ブランド", "#"
     %ul.header__list__right
-      %li.header__list__right__items.header__list__right__items--login
+      -# 伊藤足し
+      %li.header__list__right__items.header__list__right__items--mypage
         = link_to "ログイン", new_user_session_path
-      %li.header__list__right__items.header__list__right__items--signup
+      %li.header__list__right__items.header__list__right__items--logout
         = link_to "新規会員登録", new_user_registration_path

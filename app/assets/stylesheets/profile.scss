@@ -4,12 +4,9 @@
   overflow-y: hidden;
 
   &__profile {
-    //width: 400px;
     height: 100%;
     padding: 0 40px 40px 40px;
     display: block;
-    //border-style: solid;
-    //border-width: 0;
     margin-top:45px;
     
   
@@ -48,8 +45,7 @@
            background-image: white; 
          }
           &--box{
-            padding: 10px 24px;
-            //height: 120px; 
+            padding: 10px 24px; 
           }
           .user-img{
              text-align: center;
@@ -64,7 +60,6 @@
            margin:0 auto;
            margin-bottom: 30px;
            text-align: center;
-           //font-size: 24px;
            border-bottom:double;
            border-color:#C0C0C0;
            
@@ -86,6 +81,7 @@
             //border-color:#C0C0C0;
             font-size:22px;
             color:white;
+            cursor: pointer;
             background-color:#3ccace;
             
             }

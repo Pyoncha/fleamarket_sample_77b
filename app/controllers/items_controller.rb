@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(5)
+    
   end
 
   def new
@@ -29,12 +30,16 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+     
     if @item.destroy
       redirect_to root_path, notice: '削除しました'
     else
       render :show
     end
   end
+  
+  
+  
 
   def purchase
     # 商品購入サーバーサイド作成時に本実装（現在は仮置き）
