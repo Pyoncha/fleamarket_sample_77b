@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'users/users'
   devise_for :users,controller:  {
     registrations: 'users/registrations',
     sessions: 'users/sessions'

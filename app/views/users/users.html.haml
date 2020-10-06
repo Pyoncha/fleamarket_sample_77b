@@ -1,0 +1,40 @@
+.header__content
+  .header__content__main
+    %h1.header--logo
+      = link_to root_path, class:'furima--logo' do
+        = image_tag 'logo/logo.png', alt: 'FURIMAロゴ', class: 'logo'      
+    .item__search
+      = form_with do |f|
+        = f.text_field :name, placeholder: "キーワードから探す", class: "item__search__box"
+        %button{type: "submit", class: "btn"}
+          .search--btn
+            = image_tag 'icon/icon-search 1.png', alt: '検索', class: 'icon'
+  -# ログイン有無でヘッダー部分を変える
+  -# - if user_signed_in?
+    -# = render:'users_signin'
+  -# - else
+    -# = render:'users_signup'
+=render "users_side"
+.mypage 
+  %main.mypage__profile
+    .main__profile
+      .main__profile--form
+        //=image_tag "#";
+        .main__profile--header
+          %h1 プロフィール
+        .main__profile--detail
+          //= form_for @user,url:profile_update_user_path(current_user), method: :patch,html:{class:"personal-input-form" } do |form|
+        .main__profile__name 
+        .main__profile__name--box
+        .main__profile__name--img
+          = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", height: "150", width: "150", class: "user-img"
+        .main__profile__name--nickname
+          = form_with model:@user, local: true do |f|
+            -# :nickname
+        .main__profile__name--message
+          -# = form_with url: "profile_uses_path" do |form|
+            フォーム内容
+          -# = form.text_area :introduction,class:'text-introduction',placeholder:"例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪" 
+        .main__form-edit
+          変更する
+    
