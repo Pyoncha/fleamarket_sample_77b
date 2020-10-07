@@ -23,9 +23,8 @@
             = link_to "#", method: :post, class: "btn-def--apple" do
               %i.fab.fa-apple
               %span Appleでログイン        
-            
-          .login-form-inner
-            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .login-form-inner
+            = form_with url:user_session, local: true do |f|
               .field
                 = f.label :email
                 %br/
@@ -42,4 +41,3 @@
                 = f.submit 'ログイン', class:"form-group__login"
   .purchase__content__main__boxes
     = render partial: 'items/frame_bottom'
-              

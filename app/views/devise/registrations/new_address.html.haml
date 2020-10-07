@@ -5,9 +5,9 @@
       .users__address__body__box
         .users__address__body__main
           %h2 住所情報登録
-        = form_with model:@user_address, local: true do |f|
+        = form_with model:@address, url:addresses_path ,method: :post, local: true do |f|
           -# 伊藤 名前足し
-          -# = render "devise/shared/error_messages", resource: @address
+          = render "devise/shared/error_messages", resource: @address
           .filed
             = f.label :お名前（全角）
             .head_icon

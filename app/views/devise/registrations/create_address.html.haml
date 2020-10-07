@@ -1,2 +1,8 @@
-<h2>登録が完了しました</h2>
-<%= link_to "トップへ戻る", root_path%>
+.purchase__contents.body
+  = render partial: 'items/frame_upper'
+  .body
+    .body__box
+      .body__box__complete
+        登録が完了しました
+      .button
+        = link_to "トップページへ戻る", root_path

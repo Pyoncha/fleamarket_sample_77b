@@ -14,7 +14,7 @@
     -# = render:'users_signin'
   -# - else
     -# = render:'users_signup'
-=render "users_side"
+=render "profile_side"
 .mypage 
   %main.mypage__profile
     .main__profile
@@ -23,17 +23,13 @@
         .main__profile--header
           %h1 プロフィール
         .main__profile--detail
-          -# = form_for @user,url:profile_update_user_path(current_user), method: :patch,html:{class:"personal-input-form" } do |form|
         .main__profile__name 
         .main__profile__name--box
         .main__profile__name--img
           = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", height: "150", width: "150", class: "user-img"
         .main__profile__name--nickname
-          -# = form_with model:@user, local: true do |f|
-            :nickname
         .main__profile__name--message
-        -#  = form_with url: "users_profile_path" do |form|
-            フォーム内容
+          フォーム内容
           -# = f.text_area :introduction,class:'text-introduction',placeholder:"例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪" 
         .main__form-edit
           変更する
