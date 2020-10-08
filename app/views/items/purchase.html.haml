@@ -1,4 +1,4 @@
-.contents.body
+.purchase__contents.body
   = render partial: 'frame_upper'
   .purchase__content__main
     .purchase__content__main__boxes
@@ -8,35 +8,36 @@
         .item--title
           .item--image
             %figure.image
-              - @items.images.each do |image|
+              - @item.images.each do |image|
                 = image_tag image.image.url, alt: 'イメージ画像'
           .item--detail
-            %p.name=@items.name
+            %p.name=@item.name
             %p.prices
               %span.shipping__charge=@shipping_charge
-              %span.price="¥#{@items.price}"
+              %span.price="¥#{@item.price}"
       %section.box
         .payment__amount
           %span 支払い金額
-          %span.payment="¥#{@items.price}"
+          %span.payment="¥#{@item.price}"
       %section.box
         .user__info__box
-          .user__info
-            %h3.subtitle 支払い方法
-            -# クレジットカード登録時の表示(27~28)
-            -# = link_to "/credit_cards", class:'alter' do
-            -#   %span 変更する
-            -# クレジットカード未登録時の表示(30~31)
-          = link_to "/credit_cards", class:'entry__box' do
-            %span.entry 登録してください
-          -# クレジットカード登録時の表示(33~39)
-          -# .credit__card
-          -#   %p クレジットカード
-          -#   %p ************0000
-          -#   %p
-          -#     有効期限
-          -#     01 / 30
-          -#   = image_tag 'card_logo/mastercard.svg', alt: 'mastercard', class: 'logo'
+          - if @default_card_information.present?
+            .user__info
+              %h3.subtitle 支払い方法
+              = link_to "/credit_cards", class:'alter' do
+                %span 変更する
+            .credit__card
+              %p クレジットカード
+              %p="**** **** **** #{@default_card_information.last4}"
+              %p
+                有効期限
+                ="#{@default_card_information.exp_month.to_s} / #{@default_card_information.exp_year.to_s.slice(2,3)}"
+              = image_tag 'card_logo/visa.svg', alt: 'Visa', class: 'logo'
+          - else
+            .user__info
+              %h3.subtitle 支払い方法
+            = link_to "/credit_cards", class:'entry__box' do
+              %span.entry 登録してください
       %section.box
         .user__info__box
           .user__info
@@ -54,10 +55,12 @@
           -#   %p 手区明流男
       %section.box
         .enter
-          -# 未登録（カード及び配送先）(58~60)
-          %p.attention 支払い方法の入力を完了してください。
-          %p.attention 配送先の入力を完了してください。
-          %button.enter__box.btn 購入する
-          -# 登録後（カード及び配送先）(62)
-          -# %button.enter__permit__box.btn 購入する
+          - if @default_card_information.blank?
+            %p.attention 支払い方法の入力を完了してください。
+          -# 配送先の実装後表示
+          -# %p.attention 配送先の入力を完了してください。
+          - if @default_card_information.blank?
+            %button.enter__box.btn 購入する
+          - if @default_card_information.present?
+            = button_to '購入する' ,{action: "pay"}, method: :post, class: "enter__permit__box btn"
   = render partial: 'frame_bottom'
