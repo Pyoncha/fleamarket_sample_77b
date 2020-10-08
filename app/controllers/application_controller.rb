@@ -1,9 +1,23 @@
 class ApplicationController < ActionController::Base
 
   before_action :basic_auth, if: :production?
+  # 伊藤足し
+  # before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  # 伊藤足し
+  protected
+  #伊藤直し last_name birth_day
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birth_day])
+  end
+end
+
+
   def new
     
   end
+
+    
   private
 
   def basic_auth
@@ -17,4 +31,3 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
-end

@@ -19,6 +19,7 @@
         = link_to "ブランド", "#"
     %ul.header__list__right
       %li.header__list__right__items.header__list__right__items--mypage
-        = link_to "マイページ", "#"
+        = link_to "マイページ", users_profile_path
       %li.header__list__right__items.header__list__right__items--logout
-        = link_to "ログアウト", "#"
+        -# 伊藤記
+        = link_to "ログアウト", destroy_user_session_path,method: :delete

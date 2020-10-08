@@ -1,0 +1,90 @@
+.mypage{
+  margin:0px;
+  padding: 0px;
+  overflow-y: hidden;
+
+  &__profile {
+    height: 100%;
+    padding: 0 40px 40px 40px;
+    display: block;
+    margin-top:45px;
+    
+  
+    .main__profile {
+      width: 480px;
+      height: 100%;
+      background-color: #fff;
+      padding:15px 25px;
+      position: relative;
+      &--form{
+        text-align: center;
+        width: 100%;
+        height: 900px;
+        background-position: center;
+        background-size: cover;
+        background-color:#fff;
+
+      .main__profile--header{
+        font-size: 24px;
+        font-weight:bold;
+        padding: 10px 24px;
+        border: solid 1px;
+        border-color:#C0C0C0;
+        background-color: #C0C0C0;
+      }
+        }
+         &--detail{
+           //margin:0px;
+         }
+         &__name{
+           height: 25px;
+           padding: 10px 24px;
+           text-align: center;
+           margin: 2px auto;
+           font-size: 24px;
+           background-image: white; 
+         }
+          &--box{
+            padding: 10px 24px; 
+          }
+          .user-img{
+             text-align: center;
+             width: 150px;
+             height: 150px;
+            }
+          
+         &__name--nickname{
+           padding: 10px 24px;
+           height: 20px;
+           width: 150px;
+           margin:0 auto;
+           margin-bottom: 30px;
+           text-align: center;
+           border-bottom:double;
+           border-color:#C0C0C0;
+           
+           }
+          &__name--message{
+            margin-top:2px;
+            padding: 10px 24px;
+            height: 500px;
+            border: solid 1px;
+            border-color:#C0C0C0;
+             
+          }
+          .main__form-edit{
+            margin-top:45px;
+            border: solid 1px;
+            height: 60px;
+            padding: 15px 24px 15px;
+            text-align: center;
+            font-size:22px;
+            color:white;
+            cursor: pointer;
+            background-color:#3ccace;
+            
+            }
+          }
+          
+    
+        }}
