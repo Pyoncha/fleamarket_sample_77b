@@ -4,8 +4,9 @@
   overflow-y: hidden;
 
   &__profile {
+    margin:0,auto;
     height: 100%;
-    padding: 0 40px 40px 40px;
+    // padding: 0 40px 40px 40px;
     display: block;
     margin-top:45px;
     
@@ -19,23 +20,25 @@
       &--form{
         text-align: center;
         width: 100%;
-        height: 900px;
         background-position: center;
         background-size: cover;
         background-color:#fff;
+      
 
       .main__profile--header{
+        width:200px;
+        height: 60px;
+        color:red;
+        text-align: center;
         font-size: 24px;
         font-weight:bold;
         padding: 10px 24px;
-        border: solid 1px;
+        // border: solid 1px;
         border-color:#C0C0C0;
         background-color: #C0C0C0;
       }
-        }
-         &--detail{
-           //margin:0px;
-         }
+        
+         
          &__name{
            height: 25px;
            padding: 10px 24px;
@@ -44,38 +47,34 @@
            font-size: 24px;
            background-image: white; 
          }
-          &--box{
-            padding: 10px 24px; 
-          }
-          .user-img{
+
+           &__name--img{
              text-align: center;
              width: 150px;
              height: 150px;
             }
           
-         &__name--nickname{
-           padding: 10px 24px;
-           height: 20px;
-           width: 150px;
-           margin:0 auto;
-           margin-bottom: 30px;
-           text-align: center;
-           border-bottom:double;
-           border-color:#C0C0C0;
-           
-           }
+           &__name--nickname{
+             padding: 10px 24px;
+             height: 20px;
+             width: 150px;
+            //  margin:0 auto;
+             margin-bottom: 30px;
+             text-align: center;
+             border-bottom:double;
+             border-color:#C0C0C0;
+             
+             }
           &__name--message{
-            margin-top:2px;
-            padding: 10px 24px;
-            height: 500px;
-            border: solid 1px;
-            border-color:#C0C0C0;
+           
              
           }
-          .main__form-edit{
+          .btn-default{
+            width:200px;
+            height: 60px;
             margin-top:45px;
             border: solid 1px;
-            height: 60px;
+            
             padding: 15px 24px 15px;
             text-align: center;
             font-size:22px;
@@ -85,6 +84,4 @@
             
             }
           }
-          
-    
-        }}
+        }}}
