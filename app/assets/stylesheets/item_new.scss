@@ -193,6 +193,25 @@
           width: 100%;
           border-radius: 5px;
           border: 1px solid #ccc;
+          color: black;
+        }
+
+        .child_category_id {
+          height: 45px;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          color: black;
+          margin-top: 5px;
+        }
+
+        .grandchild_category_id {
+          height: 45px;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          color: black;
+          margin-top: 5px;
         }
 
         &__brand {
@@ -207,7 +226,7 @@
           width: 100%;
           border-radius: 5px;
           border: 1px solid #ccc;
-          color: rgba(167, 162, 162, 0.925);
+          color: black;
         }
       }
 
@@ -226,7 +245,7 @@
           width: 100%;
           border-radius: 5px;
           border: 1px solid #ccc;
-          color: rgba(167, 162, 162, 0.925);
+          color: black;
         }
 
         &__prefecture {
@@ -234,7 +253,7 @@
           width: 100%;
           border-radius: 5px;
           border: 1px solid #ccc;
-          color: rgba(167, 162, 162, 0.925);
+          color: black;
         }
 
         &__date {
@@ -242,7 +261,7 @@
           width: 100%;
           border-radius: 5px;
           border: 1px solid #ccc;
-          color: rgba(167, 162, 162, 0.925);
+          color: black;
         }
       }
       
@@ -276,7 +295,7 @@
           text-align: right;
           border-radius: 5px;
           border: 1px solid #ccc;
-          color: rgba(167, 162, 162, 0.925);
+          color: black;
         }
 
         &__commission-up {
@@ -317,13 +336,13 @@
       &__send-boxes {
         width: 50%;
         height: 200px;
-        margin: 0px 130px;
+        margin: 0px 145px;
         
         &__send-btn {
           width: 100%;
           height: 50px;
           font-size: 17px;
-          background-color: red;
+          background-color: #3CCACE;
           border-radius: 5px;
           color: #fff;
           margin-bottom: 15px;
@@ -335,7 +354,7 @@
         }       
 
         &__send-btn:hover {
-          background-color: rgba(255, 0, 0, 0.479);
+          background-color: #7ee2e6;
         }
 
         &__return-btn {

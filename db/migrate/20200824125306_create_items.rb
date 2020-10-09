@@ -19,11 +19,11 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
 
       # category, brandをstringで仮置き
-      t.string :category, null: false
+      # t.string :category, null: false
       t.string :brand
 
       # Userモデル、Categoryモデル、Brandモデル作成時に使用
-      # t.references :category, null: false, foreign_key: true
+      t.references :category, null: false, foreign_key: true
       # t.references :brand, foreign_key: true
 
       t.timestamps

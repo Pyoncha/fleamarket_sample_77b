@@ -1,0 +1,25 @@
+.header__content
+  .header__content__main
+    %h1.header--logo
+      = link_to root_path, class:'furima--logo' do
+        = image_tag 'logo/logo.png', alt: 'FURIMAロゴ', class: 'logo'      
+    .item__search
+      = form_with do |f|
+        = f.text_field :name, placeholder: "キーワードから探す", class: "item__search__box"
+        %button{type: "submit", class: "btn"}
+          .search--btn
+            = image_tag 'icon/icon-search 1.png', alt: '検索', class: 'icon'
+
+  .nav
+    %ul.header__list__left
+      %li.header__list__left__items.header__list__left__items__first
+        = link_to "カテゴリー", "#"
+        .tree.display__none
+      %li.header__list__left__items
+        = link_to "ブランド", "#"
+    %ul.header__list__right
+      %li.header__list__right__items.header__list__right__items--mypage
+        = link_to "マイページ", users_profile_path
+      %li.header__list__right__items.header__list__right__items--logout
+        -# 伊藤記
+        = link_to "ログアウト", destroy_user_session_path,method: :delete

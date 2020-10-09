@@ -48,14 +48,15 @@
                 = f.label :category, "カテゴリー"
                 %span.form__main__content__require
                   必須
-              = f.text_field :category, placeholder: "　仮", class: "form__main__content__describe__category"
+              #category_field
+                = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, class: "form__main__content__describe__category", id: "category_form"
 
             .form__main__content__form-group
               .form__main__content__title
                 = f.label :brand, "ブランド"
                 %span.form__main__content__option
                   任意
-              = f.text_field :category, placeholder: "　例）シャネル", class: "form__main__content__describe__brand"
+              = f.text_field :brand, placeholder: "　例）シャネル", class: "form__main__content__describe__brand"
 
             .form__main__content__form-group
               .form__main__content__title
@@ -133,7 +134,7 @@
           %li.form__footer__content__main__lists__list
             プライバシーポリシー
           %li.form__footer__content__main__lists__list
-            メルカリ利用規約
+            フリマ利用規約
           %li.form__footer__content__main__lists__list
             特定商取引に関する表記
         %p.form__footer__copyright

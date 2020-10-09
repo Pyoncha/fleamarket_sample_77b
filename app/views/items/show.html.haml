@@ -1,0 +1,154 @@
+.header
+  -# ログイン有無でヘッダー部分を変える
+  - if user_signed_in?
+    = render partial: 'index_upper_signed_in'
+  - else
+    = render partial: 'index_upper_signed_out'
+
+.show-nav
+  %ul.show-nav__category-lists
+    %li.show-nav__category-lists__list
+      = link_to root_path, class: "show-nav__category-lists__list__link" do
+        FURIMA
+    %li.show-nav__category-lists__icon
+      = icon("fas", "angle-right", class: "angle-right__icon")
+    %li.show-nav__category-lists__list
+      = @item.category.parent.parent.name
+    %li.show-nav__category-lists__icon
+      = icon("fas", "angle-right", class: "angle-right__icon")
+    %li.show-nav__category-lists__list
+      = @item.category.parent.name
+    %li.show-nav__category-lists__icon
+      = icon("fas", "angle-right", class: "angle-right__icon")
+    %li.show-nav__category-lists__list
+      = @item.category.name
+    %li.show-nav__category-lists__icon
+      = icon("fas", "angle-right", class: "angle-right__icon")
+    %li.show-nav__category-lists__list
+      = @item.name
+
+.show-main
+  .show-main__contents
+    .show-main__contents__main-content
+      .show-main__contents__main-content__item-info
+        .show-main__contents__main-content__item-info__item-box
+          .show-main__contents__main-content__item-info__item-box__name
+            = @item.name
+          .show-main__contents__main-content__item-info__item-box__images
+            %ul
+              %li
+                = image_tag @item.images[0].image.url, class: "show-main-img"
+                %ul      
+                  - @item.images.each do |image|
+                    %li
+                      = image_tag image.image.url, alt: 'アイテムイメージ', class: "show-img"
+          .show-main__contents__main-content__item-info__item-box__price
+            %span
+              = "¥#{@item.price}"
+            .show-main__contents__main-content__item-info__item-box__price__detail
+              （税込み）
+              = @item.shipping_charge.defrayer
+          .show-main__contents__main-content__item-info__item-box__describe
+            = @item.describe
+          .show-main__contents__main-content__item-info__item-box__table
+            %table
+              %tbody
+                %tr
+                  %th
+                    出品者
+                  %td
+                    -# = @item.user.nickname
+                %tr
+                  %th
+                    カテゴリー
+                  %td
+                    = @item.category.parent.parent.name
+                    %br
+                    = @item.category.parent.name
+                    %br
+                    = @item.category.name
+                %tr
+                  %th
+                    ブランド
+                  %td
+                    = @item.brand
+                %tr
+                  %th
+                    商品のサイズ
+                  %td
+                    仮表示
+                %tr
+                  %th
+                    商品の状態
+                  %td
+                    = @item.condition.condition
+                %tr
+                  %th
+                    配送料の負担
+                  %td
+                    = @item.shipping_charge.defrayer
+                %tr
+                  %th
+                    発送元の地域
+                  %td
+                    = @item.prefecture.name
+                %tr
+                  %th
+                    発送日の目安
+                  %td
+                    = @item.delivery_date.date
+
+          .show-main__contents__main-content__item-info__item-box__optional-area
+            %ul
+              %li.like-btn
+                = icon("fas", "star", class: "like-icon")
+                お気に入り 0
+            %ul
+              %li.report-btn
+                = link_to '#', class:'report-btn-link' do
+                  = icon("fas", "flag", class: "flag-icon")
+                  不適切な商品の通報
+        
+        - if user_signed_in? && current_user.id ==@item.user_id
+          .show-main__contents__main-content__item-info__edit-link
+            .show-main__contents__main-content__item-info__edit-link__edit-box
+              = link_to edit_item_path(@item.id), class: "edit-btn" do
+                商品の編集
+            .show-main__contents__main-content__item-info__edit-link__delete-box
+              = link_to item_path(params[:id]), method: :delete, class: "delete-btn" do
+                この商品を削除する
+        - else
+          .show-main__contents__main-content__item-info__purchase-link
+            .show-main__contents__main-content__item-info__purchase-link__purchase-box
+              = link_to item_purchase_path(@item.id), class: "purchase-btn" do
+                購入画面に進む
+
+        .show-main__contents__main-content__item-info__comment-box
+          -# ↓コメント機能を追加する場合、form_withに書き換える
+          .show-main__contents__main-content__item-info__comment-box__form
+            .show-main__contents__main-content__item-info__comment-box__form__textarea
+            .show-main__contents__main-content__item-info__comment-box__form__notice
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br
+              不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            .show-main__contents__main-content__item-info__comment-box__form__comment-btn
+              = icon("fas", "comment", class: "comment-icon")
+              コメントする
+
+      %ul.show-main__contents__main-content__links
+        %li.before-item
+          = link_to '#', class:'before-item-link' do
+            = icon("fas", "angle-left", class: "angle-left-icon")
+            前の商品
+        %li.after-item
+          = link_to '#', class:'after-item-link' do
+            後ろの商品
+            = icon("fas", "angle-right", class: "angle-right-icon")
+
+      .show-main__contents__main-content__related-items
+        = link_to '#', class:'show-main__contents__main-content__related-items__link' do
+          = @item.category.name
+          をもっと見る
+
+.footer
+  = render partial: 'index_bottom'

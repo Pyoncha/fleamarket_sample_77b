@@ -97,3 +97,9 @@ gem 'active_hash'
 gem 'seed-fu'
 
 gem 'payjp'
+gem 'ancestry'
+
+# deviseの日本語化に必要
+gem 'rails-i18n', '~> 5.1'
+
+gem 'devise-i18n'

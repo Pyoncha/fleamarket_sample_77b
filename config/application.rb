@@ -17,3 +17,11 @@ module FleamarketSample77b
     # the framework and any gems in your application.
   end
 end
+
+# deviseの日本語化に必要
+# module Dansyalist
+  # class Application < Rails::Application
+    # config.i18n.default_locale = :ja
+    # 
+  # end
+# end
