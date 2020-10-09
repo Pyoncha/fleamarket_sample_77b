@@ -8,7 +8,7 @@ class CreateUserAddresses < ActiveRecord::Migration[5.2]
       t.string :postal_code,        null: false
       t.string :prefecture,         null: false
       t.string :city,               null: false
-      t.string :adrress,            null: false
+      t.string :address,            null: false
       t.string :building    
       t.string :phone_number  
       t.references :user
@@ -17,3 +17,4 @@ class CreateUserAddresses < ActiveRecord::Migration[5.2]
   end
 end
 # 伊藤名前〜かな ④行足し
+# adressを addressに修正

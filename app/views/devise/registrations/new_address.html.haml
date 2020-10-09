@@ -5,7 +5,7 @@
       .users__address__body__box
         .users__address__body__main
           %h2 住所情報登録
-        = form_with model:@address, url:addresses_path ,method: :post, local: true do |f|
+        = form_with model:@address, url:addresses_path , local: true do |f|
           -# 伊藤 名前足し
           = render "devise/shared/error_messages", resource: @address
           .filed
@@ -24,7 +24,7 @@
             = f.label :郵便番号
             .head_icon
               必須
-          = f.text_field :postal, placeholder: "例）123-4567", autofocus: true, autocomplete: "postal_code"
+          = f.text_field :postal_code, placeholder: "例）123-4567", autofocus: true, autocomplete: "postal_code"
           .filed
             = f.label :都道府県
             .head_icon
