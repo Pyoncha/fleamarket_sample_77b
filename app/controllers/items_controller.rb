@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show, :edit, :destroy]
-  before_action :set_parents, only: [:new, :create, :edit]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_parents, only: [:new, :create, :edit, :update]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(5)
@@ -26,6 +26,36 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # grandchild_category = @item.category
+    # child_category = grandchild_category.parent
+
+    # @category_parent_array = []
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent_array << parent.name
+    # end
+
+    # @category_children_array = []
+    # Category.where(ancestry: child_category.ancestry).each do |children|
+    #   @category_children_array << children
+    # end
+
+    # @category_grandchildren_array = []
+    # Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+    #   @category_grandchildren_array << grandchildren
+    # end
+
+  end
+
+  def update
+    if @item.user_id == current_user.id
+      if @item.update(item_params)
+        redirect_to item_path(@item.id), notice: '商品情報を更新しました'
+      else
+        render :edit
+      end
+    else
+      render :edit
+    end
   end
 
   def destroy
