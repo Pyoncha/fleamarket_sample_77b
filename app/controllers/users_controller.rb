@@ -5,11 +5,16 @@ class UsersController < ApplicationController
     
   end
 
+
+
   # 伊藤足し
   def profile
     
   end
+
   
+
+
 end
 
   
