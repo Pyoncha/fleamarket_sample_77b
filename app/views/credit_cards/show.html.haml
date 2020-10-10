@@ -19,6 +19,8 @@
                   = button_to '削除する' ,{action: "show"}, method: :delete, class: "delete__btn"
         %section.registration
           .enter
-            %button.enter__permit__box.btn(onclick="location.href='/items/:item_id/purchase/:id'")選択した支払い方法を使う
-            = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 
+            -# %button.enter__permit__box.btn(onclick="location.href='/items/:item_id/purchase/:id'")選択した支払い方法を使う
+            %button.enter__permit__box.btn(onclick="location.href=item_purchase_path")選択した支払い方法を使う
+            -# = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 確認後削除
+            = link_to "もどる", item_purchase_path, class:'return'
   = render partial: 'items/frame_bottom'

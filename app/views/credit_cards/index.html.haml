@@ -9,10 +9,12 @@
           .user__info__box
             .user__info
               %h3.subtitle クレジットカード
-            = link_to "/credit_cards/new", class:'entry__box' do
+            -# = link_to "/credit_cards/new", class:'entry__box' do 確認後削除
+            = link_to new_credit_card_path, class:'entry__box' do
               %span.entry 新規カードを登録する
         %section.registration
           .enter
             %button.enter__box.btn 選択した支払い方法を使う
-            = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 
+            -# = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 確認後削除
+            = link_to "もどる", item_purchase_path, class:'return'
   = render partial: 'items/frame_bottom'

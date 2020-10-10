@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   root 'items#index'
 
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
-    get '/purchase/:id', to: 'items#purchase'
+    get '/purchase/:id', to: 'items#purchase', as: :purchase
     post '/purchase/:id', to: 'items#pay'
     collection do
       get :category_search
