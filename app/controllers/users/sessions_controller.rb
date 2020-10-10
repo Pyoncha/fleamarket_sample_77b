@@ -3,7 +3,7 @@
 class Users::SessionsController < Devise::SessionsController
 
   def  new
-    @user = User.new
+  
   end
 
   # before_action :configure_sign_in_params, only: [:create]

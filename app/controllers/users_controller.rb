@@ -7,9 +7,9 @@ class UsersController < ApplicationController
 
 
 
-  # 伊藤足し
+  
   def profile
-    
+    @user = User.new
   end
 
   

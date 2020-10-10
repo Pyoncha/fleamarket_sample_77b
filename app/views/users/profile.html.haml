@@ -9,7 +9,7 @@
         %button{type: "submit", class: "btn"}
           .search--btn
             = image_tag 'icon/icon-search 1.png', alt: '検索', class: 'icon'
-
+  
   .nav
     %ul.header__list__left
       %li.header__list__left__items.header__list__left__items__first
@@ -21,26 +21,8 @@
       %li.header__list__right__items.header__list__right__items--mypage
         = link_to "マイページ", users_profile_path
       %li.header__list__right__items.header__list__right__items--logout
-        -# 伊藤記
         = link_to "ログアウト", destroy_user_session_path,method: :delete
-=render "profile_side"
-.mypage 
-  %main.mypage__profile
-    .main__profile
-      =form_with model:@user, url:users_profile_path, local: true do |f|
-        .main__profile--form
-          .main__profile--header プロフィール
-          .main__profile__name 
-          .main__profile__name--img
-            = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", height: "150", width: "150", class: "user-img"
-          .main__profile__name--nickname
+= render "profile_side"
+= render "profile_right"
 
-            =form_with url:"" do|f|
-              名前
-          .main__profile__name--message
-            %h2 プロフィール記入欄
-          = f.text_area :introduction,class:'text-introduction',placeholder:"例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", :size=>"50*15"
-          .main__form-edit
-            = f.submit "変更する" , class: "btn-default-profile"
-
-          
+= render "items/index_bottom"

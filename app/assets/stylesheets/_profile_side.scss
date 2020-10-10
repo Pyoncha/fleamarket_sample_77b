@@ -1,14 +1,27 @@
+.wrapper{
+  background-color:  whitesmoke;
+}
+
+
+.body{
+  margin:0;
+  padding:0;
+  
 .side-content {
   width: 280px;
-  height: 100%;
-  margin: 33px 10px 0 255px;
+  height: 1500px;
+  padding-left: 280px;
+  padding-top:17px;
   float: left;
   display: block;
+  background-color:  whitesmoke;
+  
+  
 
    a{
      opacity: 1;
      &:hover{
-      opacity:0.5;
+      opacity:0.3;
     }
    }
   .mypage-nav {
@@ -62,4 +75,4 @@
     
   }     
 }
-
+}
