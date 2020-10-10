@@ -92,4 +92,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # 本番環境で秘密鍵を使用するファイル(credentials.yml.enc)のmaster.keyの指定漏れ防止
+  config.require_master_key = true
+  
 end

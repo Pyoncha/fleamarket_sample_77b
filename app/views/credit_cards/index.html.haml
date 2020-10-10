@@ -9,22 +9,12 @@
           .user__info__box
             .user__info
               %h3.subtitle クレジットカード
-            -# JSで追加していく項目(登録後)(13~20)
-            -# %ul.credit__cards
-            -#   %li.credit__card
-            -#     .credit__card__box
-            -#       .credit__card__box__detail
-            -#         %p.card__number ************0000
-            -#         %p.card__expiry__date 有効期限01 / 30
-            -#         = image_tag 'card_logo/mastercard.svg', alt: 'mastercard', class: 'logo'
-            -#       %button.delete__btn 削除する
-            = link_to "/credit_cards/new", class:'entry__box' do
+            -# = link_to "/credit_cards/new", class:'entry__box' do 確認後削除
+            = link_to new_credit_card_path, class:'entry__box' do
               %span.entry 新規カードを登録する
         %section.registration
           .enter
-            -# 未登録（カード）(27)
             %button.enter__box.btn 選択した支払い方法を使う
-            -# 登録後（カード）(29)
-            -# %button.enter__permit__box.btn 選択した支払い方法を使う
-            = link_to "もどる", "/items/:item_id/purchase" , class:'return' 
+            -# = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 確認後削除
+            = link_to "もどる", item_purchase_path, class:'return'
   = render partial: 'items/frame_bottom'

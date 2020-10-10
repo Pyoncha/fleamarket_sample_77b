@@ -4,7 +4,7 @@
     .purchase__content__main__boxes
       %section.registration
         %h2.title 支払い方法
-      = form_with do |f|
+      = form_with url: credit_cards_path , method: :post, id: "card_form", html:{name: "card_form"} do |f|
         .registration__box
           %section.registration.new
             .user__info__box.card__sizing
@@ -13,8 +13,7 @@
                 %span.mandatory 必須
               .text__field__style
                 .input--area
-                  -# サーバーサイドでクレジット会社ごとの正規表現を入力し番号及び付属記号の入力のみとする
-                  = f.text_field :card_number, placeholder: "半角数字のみ", autocomplete: "off", maxlength: "19", class: "text__field", onInput: "value = value.replace(/[^0-9]+/,'');"
+                  = f.text_field :card_number, placeholder: "半角数字のみ", autocomplete: "off", maxlength: "16", class: "text__field", id: "card_number", onInput: "value = value.replace(/[^0-9]+/,'');"
               = image_tag 'card_logo/visa.svg', alt: 'visa'
               = image_tag 'card_logo/mastercard.svg', alt: 'mastercard'
               = image_tag 'card_logo/saison.svg', alt: 'saison'
@@ -29,11 +28,11 @@
               .expiration__date
                 .select__box__date
                   .select__box__date__form
-                    != sprintf(f.date_select(:expiration_date, order: [:month, :year, :day], use_month_numbers: true, discard_year: true, discard_day: true))
+                    = f.select :exp_month, [["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{} , name: 'exp_month'
                 %span.month 月
                 .select__box__date
                   .select__box__date__form
-                    != sprintf(f.date_select(:expiration_date, order: [:month, :year, :day], use_year_numbers: true, discard_month: true, discard_day: true, start_year:Time.now.year-2000, end_year:Time.now.year-2000+10))
+                    = f.select :exp_year, [["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029],["30",2030]],{} , name: 'exp_year'
                 %span.year 年
             .user__info__box
               .card__info
@@ -41,9 +40,11 @@
                 %span.mandatory 必須
               .text__field__style
                 .input--area
-                  = f.text_field :card_number, placeholder: "カード背面4桁もしくは3桁の番号", autocomplete: "off", maxlength: "4", class: "text__field", onInput: "value = value.replace(/[^0-9]+/,'');"
+                  = f.text_field :cvc, placeholder: "カード背面4桁もしくは3桁の番号", autocomplete: "off", maxlength: "4", class: "text__field", id: "cvc", onInput: "value = value.replace(/[^0-9]+/,'');"
           %section.registration.new
             .enter
-              %button.enter__permit__box.btn 登録する
-              = link_to "もどる", "/credit_cards" , class:'return' 
+              #card_token
+              %button{type: "submit", class: "enter__permit__box btn", id: 'token_submit'}登録する
+              -# = link_to "もどる", "/credit_cards" , class:'return' 確認後削除
+              = link_to "もどる", credit_cards_path, class:'return'
   = render partial: 'items/frame_bottom'

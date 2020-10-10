@@ -13,13 +13,15 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
+
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
-    get 'purchase'
+    get '/purchase/:id', to: 'items#purchase', as: :purchase
+    post '/purchase/:id', to: 'items#pay'
     collection do
       get :category_search
     end
   end
-  resources :credit_cards, only: [:index, :new]
+  resources :credit_cards, only: [:index, :new, :create, :show, :destroy]
   resources :user_addresses, only: [:new, :edit]
   
 end

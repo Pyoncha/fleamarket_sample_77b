@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  require "payjp"
   before_action :set_item, only: [:show, :edit, :destroy]
   before_action :set_parents, only: [:new, :create, :edit]
 
@@ -44,12 +44,29 @@ class ItemsController < ApplicationController
   end
   
   
-  
-
   def purchase
-    # 商品購入サーバーサイド作成時に本実装（現在は仮置き）
-    @item = Item.find(1)
+    @item = Item.find(params[:item_id])
     @shipping_charge = @item.shipping_charge.defrayer
+    card = CreditCard.where(user_id: current_user.id).first
+    if card.blank?
+    else
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+    end
+  end
+
+  def pay
+    @item = Item.find(params[:item_id])
+    card = CreditCard.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+    Payjp::Charge.create(
+      :amount => @item.price,
+      :customer => card.customer_id,
+      :currency => 'jpy',
+    )
+    buyer = Item.find(params[:item_id]).update(buyer_id: current_user.id)
+    redirect_to root_path, notice: '購入処理が完了しました'
   end
 
   def category_search
