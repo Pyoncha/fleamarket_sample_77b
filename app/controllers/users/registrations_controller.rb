@@ -25,8 +25,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render :new_address
   end
 
-  def new_address
-  end
+  # def new_address
+  # end
 
 #伊藤足し
   def create_address
@@ -49,11 +49,11 @@ protected
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys:
-              [:nickname, :birth_day, :first_name, :last_name])
+              [:nickname, :first_name, :last_name,:first_name_kana, :last_name_kana ,:email, :birth_day ])
  end 
 
   def address_params
-    params.require(:user_address).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address,  :prefecture, :city, :building, :phone_number)
+    params.require(:user_address).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code,  :prefecture, :city, :address, :building, :phone_number)
   end
 end
 
