@@ -62,8 +62,6 @@ $(function(){
 
         $('.hidden-content').append(buildInputImage(fileIndex[0]));
         fileIndex.shift();
-
-
       }
       //イメージを追加
       $(`#preview-box__${id} img`).attr('src', `${image}`);

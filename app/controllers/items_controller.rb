@@ -15,12 +15,18 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path, notice: '出品完了しました'
+    if @item.images.present?
+      if @item.save
+        redirect_to root_path, notice: '出品完了しました'
+      else
+        flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
+        render :new
+      end
     else
-      flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
-      render :new
+      redirect_to new_item_path
+      flash[:alert] = "画像を入れてください"
     end
+    
   end
 
   def show
