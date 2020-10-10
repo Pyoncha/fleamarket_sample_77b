@@ -4,11 +4,11 @@ class UsersController < ApplicationController
   def users
     
   end
-end
   # 伊藤足し
   def profile
     
   end
+end
 
 
   # 伊藤足し しかし いらなかった
