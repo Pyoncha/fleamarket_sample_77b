@@ -57,7 +57,7 @@
                   %th
                     出品者
                   %td
-                    -# = @item.user.nickname
+                    = @item.user.nickname
                 %tr
                   %th
                     カテゴリー
@@ -117,10 +117,15 @@
             .show-main__contents__main-content__item-info__edit-link__delete-box
               = link_to item_path(params[:id]), method: :delete, class: "delete-btn" do
                 この商品を削除する
-        - else
+        - elsif user_signed_in?
           .show-main__contents__main-content__item-info__purchase-link
             .show-main__contents__main-content__item-info__purchase-link__purchase-box
               = link_to item_purchase_path(@item.id), class: "purchase-btn" do
+                購入画面に進む
+        - else
+          .show-main__contents__main-content__item-info__purchase-link
+            .show-main__contents__main-content__item-info__purchase-link__purchase-box
+              = link_to new_user_session_path, class: "purchase-btn" do
                 購入画面に進む
 
         .show-main__contents__main-content__item-info__comment-box

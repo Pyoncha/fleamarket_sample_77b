@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  require "payjp"
   before_action :set_item, only: [:show, :edit, :destroy]
   before_action :set_parents, only: [:new, :create, :edit]
 
@@ -15,12 +15,18 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path, notice: '出品完了しました'
+    if @item.images.present?
+      if @item.save
+        redirect_to root_path, notice: '出品完了しました'
+      else
+        flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
+        render :new
+      end
     else
-      flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
-      render :new
+      redirect_to new_item_path
+      flash[:alert] = "画像を入れてください"
     end
+    
   end
 
   def show
@@ -30,7 +36,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-     
     if @item.destroy
       redirect_to root_path, notice: '削除しました'
     else
@@ -39,12 +44,29 @@ class ItemsController < ApplicationController
   end
   
   
-  
-
   def purchase
-    # 商品購入サーバーサイド作成時に本実装（現在は仮置き）
-    @item = Item.find(1)
+    @item = Item.find(params[:item_id])
     @shipping_charge = @item.shipping_charge.defrayer
+    card = CreditCard.where(user_id: current_user.id).first
+    if card.blank?
+    else
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+    end
+  end
+
+  def pay
+    @item = Item.find(params[:item_id])
+    card = CreditCard.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+    Payjp::Charge.create(
+      :amount => @item.price,
+      :customer => card.customer_id,
+      :currency => 'jpy',
+    )
+    buyer = Item.find(params[:item_id]).update(buyer_id: current_user.id)
+    redirect_to root_path, notice: '購入処理が完了しました'
   end
 
   def category_search
@@ -66,7 +88,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    # params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image])
     params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
