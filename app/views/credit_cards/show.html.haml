@@ -1,0 +1,26 @@
+.purchase__contents.body
+  = render partial: 'items/frame_upper'
+  .purchase__content__main
+    .purchase__content__main__boxes
+      %section.registration
+        %h2.title 支払い方法
+      .registration__box
+        %section.registration
+          .user__info__box
+            .user__info
+              %h3.subtitle クレジットカード
+            %ul.credit__cards
+              %li.credit__card
+                .credit__card__box
+                  .credit__card__box__detail
+                    %p.card__number="**** **** **** #{@default_card_information.last4}"
+                    %p.card__expiry__date="有効期限#{@default_card_information.exp_month.to_s} / #{@default_card_information.exp_year.to_s.slice(2,3)}"
+                    = image_tag "card_logo/visa.svg", alt: 'Visa', class: 'logo'
+                  = button_to '削除する' ,{action: "show"}, method: :delete, class: "delete__btn"
+        %section.registration
+          .enter
+            -# %button.enter__permit__box.btn(onclick="location.href='/items/:item_id/purchase/:id'")選択した支払い方法を使う
+            %button.enter__permit__box.btn(onclick="location.href=item_purchase_path")選択した支払い方法を使う
+            -# = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 確認後削除
+            = link_to "もどる", item_purchase_path, class:'return'
+  = render partial: 'items/frame_bottom'

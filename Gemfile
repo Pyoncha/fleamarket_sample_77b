@@ -96,6 +96,7 @@ gem 'active_hash'
 # user情報仮置きとして使用
 gem 'seed-fu'
 
+gem 'payjp'
 gem 'ancestry'
 
 # deviseの日本語化に必要

@@ -166,7 +166,7 @@
           &__permit__box:hover {
             @include button--hover;
           }
-          button {
+          .btn {
             @include button;
           }
         }
