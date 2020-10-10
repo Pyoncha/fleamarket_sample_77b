@@ -24,7 +24,7 @@
               %i.fab.fa-apple
               %span Appleでログイン        
             .login-form-inner
-            = form_with model:@address, url:user_session, local: true do |f|
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
               .field
                 = f.label :email
                 %br/

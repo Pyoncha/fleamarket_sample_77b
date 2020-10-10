@@ -34,10 +34,13 @@
           .main__profile__name--img
             = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", height: "150", width: "150", class: "user-img"
           .main__profile__name--nickname
-          =form_with url:"" do|f|
-            名前
+
+            =form_with url:"" do|f|
+              名前
           .main__profile__name--message
-            %h2 フォーム内容
-          = f.text_area :introduction,class:'text-introduction',placeholder:"例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪" 
+            %h2 プロフィール記入欄
+          = f.text_area :introduction,class:'text-introduction',placeholder:"例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", :size=>"50*15"
           .main__form-edit
-            = f.submit "変更する" , class: "btn-default"
+            = f.submit "変更する" , class: "btn-default-profile"
+
+          
