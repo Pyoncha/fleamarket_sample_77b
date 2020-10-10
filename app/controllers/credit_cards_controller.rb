@@ -3,7 +3,9 @@ class CreditCardsController < ApplicationController
 
   def index
     card = CreditCard.where(user_id: current_user.id)
-    redirect_to "/credit_cards/:id" if card.exists?
+    # redirect_to "/credit_cards/:id" if card.exists?
+    redirect_to credit_card_path if card.exists?
+
   end
 
   def new
@@ -21,7 +23,8 @@ class CreditCardsController < ApplicationController
       )
       @card = CreditCard.new(customer_id: customer.id, card_id: customer.default_card, user_id: current_user.id)
       if @card.save
-        redirect_to "/credit_cards/:id"
+        # redirect_to "/credit_cards/:id"
+        redirect_to credit_card_path
       else
         render :new
       end
@@ -31,7 +34,8 @@ class CreditCardsController < ApplicationController
   def show
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
-      redirect_to "/credit_cards/new"
+      # redirect_to "/credit_cards/new"
+      redirect_to new_credit_card_path
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(card.customer_id)
@@ -49,6 +53,7 @@ class CreditCardsController < ApplicationController
       customer.delete
       card.delete
     end
-    redirect_to "/credit_cards"
+    # redirect_to "/credit_cards"
+    redirect_to credit_cards_path
   end
 end
