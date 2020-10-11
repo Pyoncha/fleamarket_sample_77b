@@ -24,8 +24,8 @@
           - if @default_card_information.present?
             .user__info
               %h3.subtitle 支払い方法
-              -# = link_to "/credit_cards", class:'alter' do 確認後削除
-              = link_to "/credit_cards", class:'alter' do
+              -# テスト
+              = link_to credit_cards_path, class:'alter' do
                 %span 変更する
             .credit__card
               %p クレジットカード
@@ -37,8 +37,8 @@
           - else
             .user__info
               %h3.subtitle 支払い方法
-            -# = link_to "/credit_cards", class:'entry__box' do 確認後削除
-            = link_to "/credit_cards", class:'alter' do
+            -# テスト
+            = link_to credit_cards_path, class:'alter' do
               %span.entry 登録してください
       %section.box
         .user__info__box
@@ -48,8 +48,7 @@
             -# = link_to "#", class:'alter' do
             -#   %span 変更する
           -# 配送先未登録時の表示(48~49)
-          -# = link_to "/user_addresses/new", class:'entry__box' do 確認後削除
-          = link_to "/user_addresses/new", class:'entry__box' do
+          = link_to new_user_address_path, class:'entry__box' do
             %span.entry 登録してください
           -# 配送先登録後の表示(51~54)
           -# .user__address
