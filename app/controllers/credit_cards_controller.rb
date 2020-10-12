@@ -39,6 +39,7 @@ class CreditCardsController < ApplicationController
       @default_card_information = customer.cards.retrieve(card.card_id)
       @card_brand = @default_card_information.brand
     end
+    @item_id = session[:item_id].values.first
   end
 
   def destroy

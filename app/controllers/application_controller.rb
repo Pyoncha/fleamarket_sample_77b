@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
 
   before_action :basic_auth, if: :production?
   # 伊藤足し

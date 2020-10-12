@@ -46,6 +46,7 @@ class ItemsController < ApplicationController
   
   def purchase
     @item = Item.find(params[:item_id])
+    session[:item_id] = @item
     @shipping_charge = @item.shipping_charge.defrayer
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
@@ -67,6 +68,7 @@ class ItemsController < ApplicationController
     )
     buyer = Item.find(params[:item_id]).update(buyer_id: current_user.id)
     redirect_to root_path, notice: '購入処理が完了しました'
+    session[:item_id] = nil
   end
 
   def category_search
