@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_parents, only: [:new, :create, :edit, :update]
+  # before_action :show_all_instance, only: [:show, :edit, :update, :destroy]
+  before_action :set_edit_category, only: [:edit, :update]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(5)
@@ -26,12 +28,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
+
     # grandchild_category = @item.category
     # child_category = grandchild_category.parent
 
+
     # @category_parent_array = []
     # Category.where(ancestry: nil).each do |parent|
-    #   @category_parent_array << parent.name
+    #   @category_parent_array << parent
     # end
 
     # @category_children_array = []
@@ -47,6 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+    # binding.pry
     if @item.user_id == current_user.id
       if @item.update(item_params)
         redirect_to item_path(@item.id), notice: '商品情報を更新しました'
@@ -101,6 +106,42 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  # def show_all_instance
+  #   @user = User.find(@item.user_id)
+  #   @images = Image.where(item_id: params[:id])                   # ⑨ 該当商品の画像をインスタンス変数へ代入
+  #   @images_first = Image.where(item_id: params[:id]).first
+  #   @category_id = @item.category_id                              # ⑩ 該当商品のレコードからカテゴリーidを取得し、インスタンス変数へ代入（この際に取得するidは孫カテゴリーidです。）
+  #   @category_parent = Category.find(@category_id).parent.parent                    
+  #   @category_child = Category.find(@category_id).parent
+  #   @category_grandchild = Category.find(@category_id)
+  # end
+
+  def set_edit_category
+    # ▼ ①ここで該当商品の子・孫カテゴリーを変数へ代入
+    grandchild = @item.category
+    child = grandchild.parent
+    # if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+    # else
+    # @category_parent_array = Category.where(ancestry: nil)
+    # ② ▼ 親カテゴリーのnameとidを配列代入
+    @parent_array = []
+    @parent_array << @item.category.parent.parent.name
+    @parent_array << @item.category.parent.parent.id
+    # end
+    # ③ ▼ 子カテゴリーを全てインスタンス変数へ代入
+    @category_children_array = Category.where(ancestry: child.ancestry)
+    # ④ ▼ 子カテゴリーのnameとidを配列代入
+    @child_array = []
+    @child_array << child.name # ⑤で生成した変数を元にname・idを取得
+    @child_array << child.id
+    # ⑤ ▼ 孫カテゴリーを全てインスタンス変数へ代入
+    @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry) 
+    # ⑥ ▼ 孫カテゴリーのnameとidを配列代入
+    @grandchild_array = []
+    @grandchild_array << grandchild.name # ⑤で生成した変数を元にname・idを取得
+    @grandchild_array << grandchild.id
   end
 
 end

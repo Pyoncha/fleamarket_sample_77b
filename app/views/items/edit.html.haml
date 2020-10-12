@@ -49,7 +49,18 @@
                 %span.form__main__content__require
                   必須
               #category_field
-                = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, class: "form__main__content__describe__category", id: "category_form"
+                -# = f.select :parent_name, @category_parent_array, { selected: @item.category.parent.parent.name }, { class: "form__main__content__describe__category", id: "category_form"}
+                -# = f.select :category_id, @category_parent_array, { selected: @item.category.parent.parent.name }, { class: "form__main__content__describe__category", id: "category_form"}
+                -# = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.parent.id}),{}, { class: "child_category_id", id: "child_category_id" }
+                -# = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.id}),{}, { class: "grandchild_category_id", id: "grandchild_category_id" }
+
+                -# = f.collection_select :category_id, @category_parent_array, :id, :name, { selected: @item.category.parent.parent.id }, class: "form__main__content__describe__category", id: "category_form"
+                -# = f.collection_select :category_id, @category_children_array, :id, :name, { selected: @item.category.parent.id }, class: "child_category_id", id: "child_category_id"
+                -# = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { selected: @item.category.id }, class: "grandchild_category_id", id: "grandchild_category_id"
+
+                = f.collection_select :category_id, @parents, :id, :name, { selected: @parent_array }, class: "form__main__content__describe__category", id: "category_form"
+                = f.collection_select :category_id, @category_children_array, :id, :name, { selected: @child_array }, class: "child_category_id", id: "child_category_id"
+                = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { selected: @grandchild_array }, class: "grandchild_category_id", id: "grandchild_category_id"
 
             .form__main__content__form-group
               .form__main__content__title
