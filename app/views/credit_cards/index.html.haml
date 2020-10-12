@@ -14,6 +14,5 @@
         %section.registration
           .enter
             %button.enter__box.btn 選択した支払い方法を使う
-            -# Prefixに変更することitem_purchase "/items/:item_id/purchase/:id"
-            = link_to "もどる", "/items/:item_id/purchase/:id", class:'return'
+            = link_to "もどる", "/items/#{@item_id}/purchase", class:'return'
   = render partial: 'items/frame_bottom'

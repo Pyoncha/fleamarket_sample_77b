@@ -24,7 +24,6 @@
           - if @default_card_information.present?
             .user__info
               %h3.subtitle 支払い方法
-              -# テスト
               = link_to credit_cards_path, class:'alter' do
                 %span 変更する
             .credit__card
@@ -37,7 +36,6 @@
           - else
             .user__info
               %h3.subtitle 支払い方法
-            -# テスト
             = link_to credit_cards_path, class:'alter' do
               %span.entry 登録してください
       %section.box
