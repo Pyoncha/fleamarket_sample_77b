@@ -20,7 +20,7 @@
         %section.registration
           .enter
             -# %button.enter__permit__box.btn(onclick="location.href='/items/:item_id/purchase/:id'")選択した支払い方法を使う
-            %button.enter__permit__box.btn(onclick="location.href='/items/:item_id/purchase/:id'")選択した支払い方法を使う
-            -# = link_to "もどる", "/items/:item_id/purchase/:id" , class:'return' 確認後削除
-            = link_to "もどる", "/items/:item_id/purchase/:id", class:'return'
+            %button.enter__permit__box.btn(onclick="location.href='/items/#{@item_id}/purchase'")選択した支払い方法を使う
+            -# Prefixに変更することitem_purchase "/items/:item_id/purchase/:id"
+            = link_to "もどる", "/items/#{@item_id}/purchase", class:'return'
   = render partial: 'items/frame_bottom'
