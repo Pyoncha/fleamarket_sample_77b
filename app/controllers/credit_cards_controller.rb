@@ -3,8 +3,8 @@ class CreditCardsController < ApplicationController
 
   def index
     card = CreditCard.where(user_id: current_user.id)
+    @item_id = session[:item_id].values.first
     redirect_to credit_card_path(id: current_user) if card.exists?
-
   end
 
   def new
