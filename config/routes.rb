@@ -14,6 +14,14 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
+  resources :users, only: [:index ,:show ,:edit,:update] do
+    member do
+      get 'profile'
+      get 'logout'
+    end
+  end
+
+
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
     get '/purchase/:id', to: 'items#purchase', as: :purchase
     post '/purchase/:id', to: 'items#pay'

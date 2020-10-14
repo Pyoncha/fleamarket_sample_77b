@@ -50,15 +50,14 @@
           =link_to items_path, class: "mypage-nav-list-item" do
             お問い合わせ
             %i.icon-arrow-right
-    
-      %h3.mypage-nav-head-setting 設定
       %ul.mypage-nav-list-setting
+        設定
         %li
           =link_to users_profile_path, class: "mypage-nav-list-setting-item" do
             プロフィール
             %i.icon-arrow-right
         %li
-          =link_to addresses_path, class: "mypage-nav-list-setting-item" do
+          =link_to "#", class: "mypage-nav-list-setting-item" do
             発送元・お届け先住所変更
             %i.icon-arrow-right
         %li
@@ -66,19 +65,19 @@
             支払い方法
             %i.icon-arrow-right
         %li
-          =link_to new_user_registration_path, class: "mypage-nav-list-setting-item" do
+          =link_to "#", class: "mypage-nav-list-setting-item" do
             メール/パスワード
             %i.icon-arrow-right
         %li
-          =link_to users_profile_path, class: "mypage-nav-list-setting-item" do
+          =link_to "#", class: "mypage-nav-list-setting-item" do
             本人情報
             %i.icon-arrow-right
         %li
-          =link_to new_user_registration_path, class: "mypage-nav-list-setting-item" do
+          =link_to "#", class: "mypage-nav-list-setting-item" do
             電話番号の確認
             %i.icon-arrow-right
         %li
-          =link_to destroy_user_session_path, method: :delete, class: "mypage-nav-list-setting-item" do
+          =link_to "#", method: :delete, class: "mypage-nav-list-setting-item" do
             ログアウト
             %i.icon-arrow-right
 
