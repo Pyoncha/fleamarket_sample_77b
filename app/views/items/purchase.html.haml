@@ -38,21 +38,21 @@
               %h3.subtitle 支払い方法
             = link_to credit_cards_path, class:'alter' do
               %span.entry 登録してください
-      %section.box
-        .user__info__box
-          .user__info
-            %h3.subtitle 配送先
-            -# 配送先登録後の表示(45~46)
-            -# = link_to "#", class:'alter' do
-            -#   %span 変更する
-          -# 配送先未登録時の表示(48~49)
-          = link_to new_user_address_path, class:'entry__box' do
-            %span.entry 登録してください
-          -# 配送先登録後の表示(51~54)
-          -# .user__address
-          -#   %p 〒453-0014
-          -#   %p 愛知県 名古屋市中村区則武1丁目9−19 協和 名駅 ビル6階
-          -#   %p 手区明流男
+      -# %section.box
+      -#   .user__info__box
+      -#     .user__info
+      -#       %h3.subtitle 配送先
+      -#       -# 配送先登録後の表示(45~46)
+      -#       -# = link_to "#", class:'alter' do
+      -#       -#   %span 変更する
+      -#     -# 配送先未登録時の表示(48~49)
+      -#     = link_to new_user_address_path, class:'entry__box' do
+      -#       %span.entry 登録してください
+      -#     -# 配送先登録後の表示(51~54)
+      -#     -# .user__address
+      -#     -#   %p 〒453-0014
+      -#     -#   %p 愛知県 名古屋市中村区則武1丁目9−19 協和 名駅 ビル6階
+      -#     -#   %p 手区明流男
       %section.box
         .enter
           - if @default_card_information.blank?
