@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
-  resources :users, only: [:index ,:show ,:edit,:update] do
+  resources :users, only: [:index ,:create ,:show ,:edit,:update] do
     member do
       get 'profile'
       get 'logout'
