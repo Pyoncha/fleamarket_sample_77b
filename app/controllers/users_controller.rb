@@ -14,6 +14,9 @@ class UsersController < ApplicationController
 
   def update
   end
+
+  def profile
+  end
   
 private
   def set_users
