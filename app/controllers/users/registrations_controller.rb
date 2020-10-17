@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
    @user = User.new
   end
 
-# 伊藤足し
+
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
@@ -28,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   
 
-#伊藤足し
+
   def create_address
      @user = User.new(session["devise.regist_data"]["user"])
      @address = UserAddress.new(address_params)
@@ -44,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
 
-#伊藤足し
+
 protected
 
   def configure_sign_up_params

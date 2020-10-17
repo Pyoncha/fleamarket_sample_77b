@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-
+  #ログインのときに　new create メソッドの記述追加　伊藤
   def  new
-    @user = User.new
+    super
+  end
+
+  def create
+    super
   end
 
   # before_action :configure_sign_in_params, only: [:create]

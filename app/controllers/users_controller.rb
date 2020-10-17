@@ -1,19 +1,27 @@
 class UsersController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  def users
-    
-  end
-
-
-
-  # 伊藤足し
-  def profile
-    
-  end
-
+  before_action :set_users, only: [:show]
   
 
+  def show
+  end
+
+  def create 
+  end
+  
+  def edit
+  end
+
+  def update
+  end
+
+  def profile
+  end
+  
+private
+  def set_users
+    @users = User.all
+  end
 
 end
 

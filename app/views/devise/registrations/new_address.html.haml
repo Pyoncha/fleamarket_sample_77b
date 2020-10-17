@@ -6,7 +6,6 @@
         .users__address__body__main
           %h2 住所情報登録
         = form_with model:@address, url:addresses_path , local: true do |f|
-          -# 伊藤 名前足し
           = render "devise/shared/error_messages", resource: @address
           .filed
             = f.label :お名前（全角）
@@ -29,7 +28,6 @@
             = f.label :都道府県
             .head_icon
               必須
-              -# 伊藤変更
           = f.select :prefecture,UserAddress.prefectures.keys,{}, { include_blank: '選択してください' }
           .filed
             = f.label :市町村

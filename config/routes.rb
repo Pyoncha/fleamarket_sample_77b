@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/profile'
   devise_for :users,controllers:  {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -13,6 +12,15 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
+
+  
+  resources :users, only: [:create ,:show ,:dit, :update] do
+    collection  do
+      get "profile"
+      get "profile_logout" 
+
+    end
+  end
 
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
     get '/purchase', to: 'items#purchase', as: :purchase
