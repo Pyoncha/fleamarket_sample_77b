@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  
-  get 'users/profile'
 
-  resources :users, only: [:new, :create ,:show ,:edit,:update] do
+  get 'users/profile'
+  resources :users, only: [:create ,:show ,:dit, :update] do
     collection  do
       get "profile"
       get "profile_logout" 
