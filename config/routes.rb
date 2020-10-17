@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'users/profile'
   resources :users, only: [:create ,:show ,:dit, :update] do
     collection  do
-      get "profile"
       get "profile_logout" 
 
     end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :profile_logout, only: [:show]
+  before_action :set_users, only: [:show]
   
 
   def show
@@ -9,8 +9,6 @@ class UsersController < ApplicationController
   def create 
   end
   
-  
-
   def edit
   end
 
@@ -18,7 +16,7 @@ class UsersController < ApplicationController
   end
   
 private
-  def profile_logout
+  def set_users
     @users = User.all
   end
 
