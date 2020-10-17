@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def users  
+  def new 
   end
 
   def show
+    @user = User.all
+  end
+
+  def create 
   end
 
   def create 
   end
 
   
-  def profile
-    @user = User.new
+  def profile_logout
+    @user = User.all
   end
 
   def edit
@@ -21,8 +25,9 @@ class UsersController < ApplicationController
   def update
   end
 
-  def logout
-  end
+# def logout
+  # @user = User.find(params[:id])
+# end
   
 
 
