@@ -38,19 +38,14 @@ class ItemsController < ApplicationController
 
   def update
     if @item.user_id == current_user.id
-      if item_params[:images_attributes].nil?
-        flash.now[:alert] = '画像がありません'
-        render :edit
-      else
-        if @item.valid?
-          if @item.update(item_params)
-            redirect_to item_path(@item.id), notice: '商品情報を更新しました'
-          else
-            render :edit
-          end
+      if @item.valid?
+        if @item.update(item_params)
+          redirect_to item_path(@item.id), notice: '商品情報を更新しました'
         else
           render :edit
         end
+      else
+        render :edit
       end
     else
       render :edit
@@ -124,28 +119,24 @@ class ItemsController < ApplicationController
   end
 
   def set_edit_category
-    # ▼ ①ここで該当商品の子・孫カテゴリーを変数へ代入
+    # 該当商品の子・孫カテゴリーを変数へ代入
     grandchild = @item.category
     child = grandchild.parent
-    # if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
-    # else
-    # @category_parent_array = Category.where(ancestry: nil)
-    # ② ▼ 親カテゴリーのnameとidを配列代入
+    # 親カテゴリーのnameとidを配列代入
     @parent_array = []
     @parent_array << @item.category.parent.parent.name
     @parent_array << @item.category.parent.parent.id
-    # end
-    # ③ ▼ 子カテゴリーを全てインスタンス変数へ代入
+    # 子カテゴリーを全てインスタンス変数へ代入
     @category_children_array = Category.where(ancestry: child.ancestry)
-    # ④ ▼ 子カテゴリーのnameとidを配列代入
+    # 子カテゴリーのnameとidを配列代入
     @child_array = []
-    @child_array << child.name # ⑤で生成した変数を元にname・idを取得
+    @child_array << child.name
     @child_array << child.id
-    # ⑤ ▼ 孫カテゴリーを全てインスタンス変数へ代入
+    # 孫カテゴリーを全てインスタンス変数へ代入
     @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry) 
-    # ⑥ ▼ 孫カテゴリーのnameとidを配列代入
+    # 孫カテゴリーのnameとidを配列代入
     @grandchild_array = []
-    @grandchild_array << grandchild.name # ⑤で生成した変数を元にname・idを取得
+    @grandchild_array << grandchild.name
     @grandchild_array << grandchild.id
   end
   
