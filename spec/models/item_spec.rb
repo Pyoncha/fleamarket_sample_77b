@@ -51,9 +51,9 @@ describe Item do
       expect(item.errors[:price]).to include("must be less than or equal to 9999999")
     end
     it "categoryが空ならNG" do
-      item = build(:item, category: nil)
+      item = build(:item, category_id: nil)
       item.valid?
-      expect(item.errors[:category]).to include("can't be blank")
+      expect(item.errors[:category_id]).to include("can't be blank")
     end
     it "conditionが空ならNG" do
       item = build(:item, condition_id: nil)
@@ -132,9 +132,9 @@ describe Item do
       expect(item.errors[:price]).to include("must be less than or equal to 9999999")
     end
     it "categoryが空ならNG" do
-      item = build(:item, category: nil)
+      item = build(:item, category_id: nil)
       item.valid?
-      expect(item.errors[:category]).to include("can't be blank")
+      expect(item.errors[:category_id]).to include("can't be blank")
     end
     it "conditionが空ならNG" do
       item = build(:item, condition_id: nil)
