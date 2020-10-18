@@ -137,8 +137,10 @@
                 %span.form__main__content__settlement__commission-box__money02
 
         .form__main__content__send-boxes
+          .form__main__content__send-boxes__image-error
+            画像を1枚以上入れて下さい
           = f.submit "変更する", class: "form__main__content__send-boxes__send-btn"
-          = link_to root_path, class: "form__main__content__send-boxes__return-btn" do
+          = link_to item_path(@item.id), class: "form__main__content__send-boxes__return-btn" do
             = 'もどる'
           .form__main__content__send-boxes__note
             禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。

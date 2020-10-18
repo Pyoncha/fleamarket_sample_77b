@@ -42,9 +42,11 @@ $(function(){
     if (imagecount == 0) {
       $('.form__main__content__send-boxes__send-btn').prop("disabled", true);
       $('.form__main__content__send-boxes__send-btn').css('background-color','#808080');
+      $('.form__main__content__send-boxes__image-error').css('display', '');
     } else {
       $('.form__main__content__send-boxes__send-btn').prop("disabled", false);
       $('.form__main__content__send-boxes__send-btn').css('background-color','');
+      $('.form__main__content__send-boxes__image-error').css('display', 'none');
     }
   }
   // 投稿編集時
