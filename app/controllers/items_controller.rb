@@ -51,12 +51,20 @@ class ItemsController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @item.user_id == current_user.id
-      if @item.update(item_params)
-        redirect_to item_path(@item.id), notice: '商品情報を更新しました'
-      else
+      if item_params[:images_attributes].nil?
+        flash.now[:alert] = '画像がありません'
         render :edit
+      else
+        if @item.valid?
+          if @item.update(item_params)
+            redirect_to item_path(@item.id), notice: '商品情報を更新しました'
+          else
+            render :edit
+          end
+        else
+          render :edit
+        end
       end
     else
       render :edit
@@ -95,9 +103,13 @@ class ItemsController < ApplicationController
 
   private
 
+  # def item_params
+  #   # params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image])
+  #   params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image]).merge(user_id: current_user.id)
+  # end
+
   def item_params
-    # params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image])
-    params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
   def set_parents
