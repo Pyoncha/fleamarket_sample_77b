@@ -32,12 +32,8 @@ class ItemsController < ApplicationController
 
   def update
     if @item.user_id == current_user.id
-      if @item.valid?
-        if @item.update(item_params)
-          redirect_to item_path(@item.id), notice: '商品情報を更新しました'
-        else
-          render :edit
-        end
+      if @item.valid? && @item.update(item_params)
+        redirect_to item_path(@item.id), notice: '商品情報を更新しました'
       else
         render :edit
       end
