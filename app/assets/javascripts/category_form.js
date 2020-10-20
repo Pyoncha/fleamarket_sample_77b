@@ -70,7 +70,7 @@ $(function(){
       $.ajax({
         url: '/items/category_search',
         type: 'GET',
-        // postsコントローラーにparamsをchildren_idで送る
+        // itemsコントローラーにparamsをchildren_idで送る
         data: { children_id: childValue },
         dataType: 'json'
       })

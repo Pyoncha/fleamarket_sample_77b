@@ -1,1 +1,159 @@
-%h1 Edit page
+.form
+  .form__main
+    = form_with model: @item, local: true do |f|
+      .form__main__head
+        = link_to root_path do
+          = image_tag 'logo/logo.png', alt: 'FURIMAロゴ', class: 'logo' 
+      .form__main__content
+        .form__main__content__upload
+          .form__main__content__title
+            出品画像
+            %span.form__main__content__require
+              必須
+        .form__main__content__p
+          最大5枚までアップロードできます
+
+          .form__main__content__upload__container
+            .prev-content
+              - @item.images.each do |image|
+                .preview-box
+                  .preview-box__upper-box
+                    = image_tag image.image.url, width: "114", height: "80", alt: "preview"
+                  .preview-box__lower-box
+                    .preview-box__lower-box__update-box
+                      %label.edit-btn 編集
+                    .preview-box__lower-box__delete-box-hidden
+                      .delete-btn
+                        %span 削除
+
+            .label-content
+              = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box", id: "label-box--#{@item.images.length}" do
+                %pre.label-box__text-visible クリックしてファイルをアップロード
+                .label-box__icon
+                  = icon('fa', 'camera')
+
+            .hidden-content
+              = f.fields_for :images do |i|
+                = i.file_field :image, class: "hidden-field"
+                = i.check_box :_destroy, class: "hidden-checkbox"
+              %input{name: "item[images_attributes][#{@item.images.length}][image]", id: "item_images_attributes_#{@item.images.length}_image", class:"hidden-field", type:"file"}
+
+        .form__main__content__sell
+          .form__main__content__sell__form
+            .form__main__content__title
+              = f.label :name, "商品名"
+              %span.form__main__content__require
+                必須
+            = f.text_field :name, placeholder: "　商品名（必須 40文字まで)", class: "form__main__content__sell__form__name"
+
+          .form__main__content__sell__form
+            .form__main__content__title
+              = f.label :describe, "商品の説明"
+              %span.form__main__content__require
+                必須
+            = f.text_area :describe, placeholder: "　商品の説明（必須 1,000文字以内)", class: "form__main__content__sell__form__describe"
+
+        .form__main__content__describe
+          %h3.show-sub-head
+            商品の詳細
+          .form__main__content__describe__form
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :category, "カテゴリー"
+                %span.form__main__content__require
+                  必須
+              #category_field
+                = f.collection_select :category_id, @parents, :id, :name, { selected: @parent_array }, class: "form__main__content__describe__category", id: "category_form"
+                = f.collection_select :category_id, @category_children_array, :id, :name, { selected: @child_array }, class: "child_category_id", id: "child_category_id"
+                = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { selected: @grandchild_array }, class: "grandchild_category_id", id: "grandchild_category_id"
+
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :brand, "ブランド"
+                %span.form__main__content__option
+                  任意
+              = f.text_field :brand, placeholder: "　例）シャネル", class: "form__main__content__describe__brand"
+
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :condition, "商品の状態"
+                %span.form__main__content__require
+                  必須
+              .form__main__content__select-box
+                = f.collection_select(:condition_id, Condition.all, :id, :condition, {include_blank: "選択してください"}, {class: "form__main__content__describe__condition", id: "condition-box"})
+
+        .form__main__content__delivery
+          %h3.show-sub-head
+            配送について
+          .form__main__content__delivery__form
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :defrayer, "配送料の負担"
+                %span.form__main__content__require
+                  必須
+              .form__main__content__select-box
+                = f.collection_select(:shipping_charge_id, ShippingCharge.all, :id, :defrayer, {include_blank: "選択してください"}, {class: "form__main__content__delivery__shipping_charge", id: "shipping_charge-box"})
+
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :name, "発送元の地域"
+                %span.form__main__content__require
+                  必須
+              .form__main__content__select-box
+                = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"}, {class: "form__main__content__delivery__prefecture", id: "prefecure-box"})
+
+            .form__main__content__form-group
+              .form__main__content__title
+                = f.label :date, "発送までの日数"
+                %span.form__main__content__require
+                  必須
+              .form__main__content__select-box
+                = f.collection_select(:delivery_date_id, DeliveryDate.all, :id, :date, {include_blank: "選択してください"}, {class: "form__main__content__delivery__date", id: "delivery_date-box"})
+
+        .form__main__content__settlement
+          %h3.show-sub-head
+            価格（¥300~9,999,999)
+          .form__main__content__settlement__form
+            .form__main__content__settlement__input-price
+              .form__main__content__title
+                = f.label :price, "販売価格"
+                %span.form__main__content__require
+                  必須
+              %span.form__main__content__settlement__doll-mark
+                ¥
+              .form__main__content__settlement__price-form
+                = f.number_field :price, placeholder: "0", class: "form__main__content__settlement__price-form", id: "item_price"
+
+            .form__main__content__settlement__commission-up
+              .form__main__content__settlement__commission-box
+                %div
+                  販売手数料（10%）
+                %span.form__main__content__settlement__commission-box__money01
+
+            .form__main__content__settlement__commission-down
+              .form__main__content__settlement__commission-box
+                %div
+                  販売利益
+                %span.form__main__content__settlement__commission-box__money02
+
+        .form__main__content__send-boxes
+          .form__main__content__send-boxes__image-error
+            画像を1枚以上入れて下さい
+          = f.submit "変更する", class: "form__main__content__send-boxes__send-btn"
+          = link_to item_path(@item.id), class: "form__main__content__send-boxes__return-btn" do
+            = 'もどる'
+          .form__main__content__send-boxes__note
+            禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
+
+  .form__footer
+    .form__footer__content
+      .form__footer__content__main
+        %ul.form__footer__content__main__lists
+          %li.form__footer__content__main__lists__list
+            プライバシーポリシー
+          %li.form__footer__content__main__lists__list
+            フリマ利用規約
+          %li.form__footer__content__main__lists__list
+            特定商取引に関する表記
+        %p.form__footer__copyright
+          © FURIMA 
