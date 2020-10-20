@@ -7,8 +7,8 @@ $(function(){
                     <img src="" alt="preview" width="114" height="80" >
                   </div>
                   <div class="preview-box__lower-box">
-                    <div class="preview-box__lower-box__update-box">
-                      <label class="edit_btn">編集</label>
+                    <div class="preview-box__lower-box__update-box" id="edit_btn_${count}">
+                      <span>編集</span>
                     </div>
                     <div class="preview-box__lower-box__delete-box" id="delete_btn_${count}">
                       <span>削除</span>
@@ -169,6 +169,33 @@ $(function(){
     checkImage();
     };
   });
+
+  // 画像編集時の動作
+  $(document).on('click', '.preview-box__lower-box__update-box', function() {
+    var id = $(this).attr('id').replace(/[^0-9]/g, '');
+    var hiddenField = $(`#item_images_attributes_${id}_image`);
+    //選択したfileのオブジェクトを取得
+    var file = hiddenField.prop('files')[0]; 
+    console.log(file);
+    var reader = new FileReader();
+    //readAsDataURLで指定したFileオブジェクトを読み込む
+    reader.readAsDataURL(file);
+    //読み込み時に発火するイベント
+    reader.onload = function() {
+      var image = reader.result;
+      console.log(image);
+      //イメージを追加
+      $(`#preview-box__${id} img`).attr('src', `${image}`);
+      //編集時の動作 プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す
+      if ($(`#item_images_attributes_${id}__destroy`).length != 0) {
+        $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
+      }
+      reader.readAsDataURL(file);
+    };
+    // reader.readAsDataURL(file);
+  });
+
+
 
   // 新しく投稿した画像削除時の動作
   $(document).on('click', '.preview-box__lower-box__delete-box', function() {
