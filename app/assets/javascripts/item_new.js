@@ -215,12 +215,12 @@ $(function(){
         if ($(`#item_images_attributes_${id}__destroy`).length != 0) {
           $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
         }
+        // 元々の投稿画像の削除ボタンを押していたらCSSを戻す
+        $(`#preview-box__upper-box__${id}`).css('opacity','');
+        $(`#delete_btn_${id}`).css('color','');
       };
       reader.readAsDataURL(file);
     });
-    // 元々の投稿画像の削除ボタンを押していたらCSSを戻す
-    $(`#preview-box__upper-box__${id}`).css('opacity','');
-    $(`#delete_btn_${id}`).css('color','');
   });
 
   // 新しく投稿した画像削除時の動作
