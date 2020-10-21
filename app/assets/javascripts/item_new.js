@@ -218,9 +218,13 @@ $(function(){
         // 元々の投稿画像の削除ボタンを押していたらCSSを戻す
         $(`#preview-box__upper-box__${id}`).css('opacity','');
         $(`#delete_btn_${id}`).css('color','');
+        //ラベル操作
+        var count = $('.preview-box').length;
+        $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_image`});
       };
       reader.readAsDataURL(file);
     });
+    
   });
 
   // 新しく投稿した画像削除時の動作
