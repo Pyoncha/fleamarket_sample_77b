@@ -3,7 +3,7 @@ $(function(){
   // プレビューの表示
   function buildHTML(count) {
     var html = `<div class="preview-box" id="preview-box__${count}">
-                  <div class="preview-box__upper-box">
+                  <div class="preview-box__upper-box" id="preview-box__upper-box__${count}">
                     <img src="" alt="preview" width="114" height="80" >
                   </div>
                   <div class="preview-box__lower-box">
@@ -38,8 +38,10 @@ $(function(){
   function checkImage() {
     // プレビューに画像があるか確認
     var imagecount = $('.preview-box').length;
-    // 画像がない場合→送信ボタンの効力無効
-    if (imagecount == 0) {
+    // 元々あった画像の削除ボタンが押されているか確認
+    var checkcount = $('.hidden-checkbox:checked').length;
+    // 画像がないもしくは画像の数が削除ボタンの数と同じ場合 →送信ボタンの効力無効
+    if (imagecount == 0 || imagecount == checkcount) {
       $('.form__main__content__send-boxes__send-btn').prop("disabled", true);
       $('.form__main__content__send-boxes__send-btn').css('background-color','#808080');
       $('.form__main__content__send-boxes__image-error').css('display', '');
@@ -59,6 +61,14 @@ $(function(){
       //プレビューにidを追加
       $('.preview-box').each(function(index, box){
         $(box).attr('id', `preview-box__${index}`);
+      })
+      //プレビューのアッパーボックスにidを追加
+      $('.preview-box__upper-box').each(function(index, box){
+        $(box).attr('id', `preview-box__upper-box__${index}`);
+      })
+      //編集ボタンにidを追加
+      $('.preview-box__lower-box__update-box').each(function(index, box){
+        $(box).attr('id', `edit_btn_${index}`);
       })
       //削除ボタンにidを追加
       $('.preview-box__lower-box__delete-box-hidden').each(function(index, box){
@@ -88,10 +98,21 @@ $(function(){
     //hidden-fieldのidの数値のみ取得
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
 
+    // 元々あったdelete-boxの数を取得
+    var deleteHiddenCount = $('.preview-box__lower-box__delete-box-hidden').length;
+
     // preview-boxのid振り直し
     $(function(){
       $('.preview-box').attr('id', function(i) {
         return 'preview-box__' + i;
+        i++;
+      });
+    });
+
+    // preview-box__upper-boxのid振り直し
+    $(function(){
+      $('.preview-box__upper-box').attr('id', function(i) {
+        return 'preview-box__upper-box__' + i;
         i++;
       });
     });
@@ -112,10 +133,18 @@ $(function(){
       });
     });
 
+    // 編集ボタンのid振り直し
+    $(function(){
+      $('.preview-box__lower-box__update-box').attr('id', function(i) {
+        return 'edit_btn_' + i;
+        i++;
+      });
+    });
+
     // 削除ボタンのid振り直し
     $(function(){
       $('.preview-box__lower-box__delete-box').attr('id', function(i) {
-        return 'delete_btn_' + i;
+        return 'delete_btn_' + Math.ceil(deleteHiddenCount + i);
         i++;
       });
     });
@@ -170,37 +199,37 @@ $(function(){
     };
   });
 
-  // 画像編集時の動作
+  // 編集ボタンを押した際の動作
   $(document).on('click', '.preview-box__lower-box__update-box', function() {
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
     var hiddenField = $(`#item_images_attributes_${id}_image`);
-    //選択したfileのオブジェクトを取得
-    var file = hiddenField.prop('files')[0]; 
-    console.log(file);
-    var reader = new FileReader();
-    //readAsDataURLで指定したFileオブジェクトを読み込む
-    reader.readAsDataURL(file);
-    //読み込み時に発火するイベント
-    reader.onload = function() {
-      var image = reader.result;
-      console.log(image);
-      //イメージを追加
-      $(`#preview-box__${id} img`).attr('src', `${image}`);
-      //編集時の動作 プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す
-      if ($(`#item_images_attributes_${id}__destroy`).length != 0) {
-        $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
-      }
+    hiddenField.on('click', function(e) {
+      e.stopPropagation();
+    });
+    hiddenField.click();
+    hiddenField.on('change', function() {
+      var file = hiddenField.prop('files')[0]; 
+      var reader = new FileReader();
+      reader.onload = function() {
+        $(`#preview-box__${id} img`).attr('src', reader.result);
+        if ($(`#item_images_attributes_${id}__destroy`).length != 0) {
+          $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
+        }
+      };
       reader.readAsDataURL(file);
-    };
-    // reader.readAsDataURL(file);
+    });
+    // 元々の投稿画像の削除ボタンを押していたらCSSを戻す
+    $(`#preview-box__upper-box__${id}`).css('opacity','');
+    $(`#delete_btn_${id}`).css('color','');
   });
-
-
 
   // 新しく投稿した画像削除時の動作
   $(document).on('click', '.preview-box__lower-box__delete-box', function() {
     //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
+
+    // 元々あったdelete-boxの数を取得
+    var deleteHiddenCount = $('.preview-box__lower-box__delete-box-hidden').length;
 
     //取得したidに該当するプレビューを削除
     $(`#preview-box__${id}`).remove();
@@ -212,6 +241,14 @@ $(function(){
     $(function(){
       $('.preview-box').attr('id', function(i) {
         return 'preview-box__' + i;
+        i++;
+      });
+    });
+
+    // preview-box__upper-boxのid振り直し
+    $(function(){
+      $('.preview-box__upper-box').attr('id', function(i) {
+        return 'preview-box__upper-box__' + i;
         i++;
       });
     });
@@ -232,10 +269,18 @@ $(function(){
       });
     });
 
+    // 編集ボタンのid振り直し
+    $(function(){
+      $('.preview-box__lower-box__update-box').attr('id', function(i) {
+        return 'edit_btn_' + i;
+        i++;
+      });
+    });
+
     // 削除ボタンのid振り直し
     $(function(){
       $('.preview-box__lower-box__delete-box').attr('id', function(i) {
-        return 'delete_btn_' + i;
+        return 'delete_btn_' + Math.ceil(deleteHiddenCount + i);
         i++;
       });
     });
@@ -263,12 +308,9 @@ $(function(){
     if ($(`#item_images_attributes_${id}__destroy`).length != 0) {
       $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
     }
-
-    // 取得したidに該当するプレビューを削除
-    $(`#preview-box__${id}`).remove();
-
-    // フォームの値をクリア（削除はしない）
-    $(`#item_images_attributes_${id}_image`).val("");
+    // 削除ボタンを押したプレビューを半透明に
+    $(`#preview-box__upper-box__${id}`).css('opacity','0.2');
+    $(`#delete_btn_${id}`).css('color','#f5f5f559');
 
     //削除時のラベル操作
     var count = $('.preview-box').length;
