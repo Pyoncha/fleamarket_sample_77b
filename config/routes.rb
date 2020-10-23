@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users,controllers:  {
+    omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
@@ -14,11 +15,10 @@ Rails.application.routes.draw do
   root 'items#index'
 
   
-  resources :users, only: [:create ,:show ,:dit, :update] do
+  resources :users, only: [:create ,:show ,:edit, :update] do
     collection  do
       get "profile"
       get "profile_logout" 
-
     end
   end
 
