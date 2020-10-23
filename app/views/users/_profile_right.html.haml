@@ -1,7 +1,7 @@
 .mypage 
   %main.mypage__profile
     .main__profile
-      =form_with model:@user, url: users_path, local: true do |f|
+      =form_with model:@user, url: profile_users_path, local: true do |f|
         .main__profile--form
           .main__profile--header プロフィール
           .main__profile__name 

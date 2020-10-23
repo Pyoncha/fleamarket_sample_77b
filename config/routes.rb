@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:create ,:show ,:edit, :update] do
     collection  do
+      post "profile"
       get "profile"
       get "profile_logout" 
     end

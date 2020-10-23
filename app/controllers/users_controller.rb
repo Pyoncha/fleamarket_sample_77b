@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   
 
   def show
+    @user = current_user
     if @users.show(users_params)
-      redirect_to user_path(id:current_user)
+      redirect_to user_path(current_user.id)
    else
       render :root_path
    end
@@ -21,9 +22,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(users_params)
-       redirect_to users_path
+       redirect_to users_path(current_user.id)
     else
-       render :profile
+       render :root_path
     end
   end 
 
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
   
 private
   def set_users
-    @users = current_user
+    @users = current_user.id
   end
 
    def users_params
