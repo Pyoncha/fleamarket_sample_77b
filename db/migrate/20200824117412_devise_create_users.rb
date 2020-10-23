@@ -12,6 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name_kana,    null: false
       t.string :last_name_kana,     null: false
       t.date   :birth_day,          null: false
+      t.text   :introduction
       # 伊藤 birth_dayのみに変更
       ## Recoverable
       t.string   :reset_password_token

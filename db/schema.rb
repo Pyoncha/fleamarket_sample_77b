@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_132448) do
+ActiveRecord::Schema.define(version: 2020_10_20_151826) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -54,6 +54,20 @@ ActiveRecord::Schema.define(version: 2020_10_01_132448) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+
+  
+
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
+
+
   create_table "user_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -80,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_132448) do
     t.string "first_name_kana", null: false
     t.string "last_name_kana", null: false
     t.date "birth_day", null: false
+    t.text "introduction"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -91,4 +106,5 @@ ActiveRecord::Schema.define(version: 2020_10_01_132448) do
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
+  add_foreign_key "sns_credentials", "users"
 end
