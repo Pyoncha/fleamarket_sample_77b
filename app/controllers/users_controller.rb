@@ -4,14 +4,15 @@ class UsersController < ApplicationController
   
 
   def show
+    if @users.show(users_params)
+      redirect_to user_path(id:current_user)
+   else
+      render :root_path
+   end
   end
 
   def create 
-    if @users.create(users_params)
-      redirect_to users_path
-   else
-      render :profile
-   end
+    
     
   end
   
@@ -19,6 +20,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(users_params)
+       redirect_to users_path
+    else
+       render :profile
+    end
   end 
 
   def profile
@@ -29,12 +35,11 @@ class UsersController < ApplicationController
   
 private
   def set_users
-    @users = User.all
+    @users = current_user
   end
 
    def users_params
-    params.require(:users).permit(
-     :nickname, :introduction )
+    params.require(:users).permit(:introduction )
    end
 end
 

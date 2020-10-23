@@ -24,7 +24,6 @@
               %i.fab.fa-apple
               %span Appleでログイン        
             .login-form-inner
-            -# ↓　localでエラー出るので　form_withに変更　伊藤
             =form_with( model:@user, url: user_session_path, local:true) do |f|
               .field
                 = f.label :email
