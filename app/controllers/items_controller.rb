@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   require "payjp"
-  before_action :set_item, only: [:show, :edit, :destroy]
-  before_action :set_parents, only: [:new, :create, :edit]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_parents, only: [:new, :create, :edit, :update]
+  before_action :set_edit_category, only: [:edit, :update]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(5)
@@ -15,24 +16,31 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.images.present?
-      if @item.save
-        redirect_to root_path, notice: '出品完了しました'
-      else
-        flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
-        render :new
-      end
+    if @item.save
+      redirect_to root_path, notice: '出品完了しました'
     else
-      redirect_to new_item_path
-      flash[:alert] = "画像を入れてください"
+      flash.now[:alert] = '未記入の必須項目もしくは条件を満たしていない項目があります'
+      render :new
     end
-    
   end
 
   def show
   end
 
   def edit
+  end
+
+  def update
+    if @item.user_id == current_user.id
+      if @item.valid? && @item.update(item_params)
+        redirect_to item_path(@item.id), notice: '商品情報を更新しました'
+      else
+        render :edit
+      end
+    else
+      flash.now[:alert] = 'ログインし直して下さい'
+      redirect_to root_path
+    end
   end
 
   def destroy
@@ -90,7 +98,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :describe, :category_id, :brand, :buyer_id, :condition_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
   def set_parents
@@ -101,4 +109,26 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def set_edit_category
+    # 該当商品の子・孫カテゴリーを変数へ代入
+    grandchild = @item.category
+    child = grandchild.parent
+    # 親カテゴリーのnameとidを配列代入
+    @parent_array = []
+    @parent_array << @item.category.parent.parent.name
+    @parent_array << @item.category.parent.parent.id
+    # 子カテゴリーを全てインスタンス変数へ代入
+    @category_children_array = Category.where(ancestry: child.ancestry)
+    # 子カテゴリーのnameとidを配列代入
+    @child_array = []
+    @child_array << child.name
+    @child_array << child.id
+    # 孫カテゴリーを全てインスタンス変数へ代入
+    @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry) 
+    # 孫カテゴリーのnameとidを配列代入
+    @grandchild_array = []
+    @grandchild_array << grandchild.name
+    @grandchild_array << grandchild.id
+  end
+  
 end

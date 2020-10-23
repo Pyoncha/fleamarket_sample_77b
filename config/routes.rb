@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
+  resources :items do
     get '/purchase', to: 'items#purchase', as: :purchase
     post '/purchase', to: 'items#pay'
     collection do
