@@ -12,12 +12,12 @@ def google_oauth2
 end
 
 def callback_for(provider)
- iauth = request.env['omniauth.auth']
- =User.find_oauth(@omniauth)
- @user = info[:user]
+  = request.env['omniauth.auth']
+  =User.find_oauth(@omniauth)
+  @user = info[:user]
  if @user.persisted?
-  sign_in_and_redirect @user, event: :authentication
-  set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?)
+   sign_in_and_redirect @user, event: :authentication
+   set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?)
 
  else
   sns = info[:sns]
@@ -27,7 +27,7 @@ def callback_for(provider)
 end
 
  def failure
-   redorect_to root_path and return
+  redorect_to root_path and return
  end
 
 
