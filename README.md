@@ -70,7 +70,7 @@ Things you may want to cover:
  | saler_id | references | null:false, foreign_key:true |
  | buyer_id | references | null:false, foreign_key:true |
  | category_id | references | null:false, foreign_key:true |
- | brand_id | references | foreign_key:true |
+ | brand | string |  |
 
 ### Association
  - belongs_to :user
@@ -95,21 +95,3 @@ Things you may want to cover:
 
 ### Association
  - has_many :items
-
-## brandsテーブル
- | Column | Type | Options |
- | ------ | ---- | ------- |
- | name | string | null:false |
-
-### Association
- - has_many :items
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
