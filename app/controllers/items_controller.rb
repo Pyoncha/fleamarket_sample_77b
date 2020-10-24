@@ -54,7 +54,6 @@ class ItemsController < ApplicationController
   
   def purchase
     @item = Item.find(params[:item_id])
-    session[:item_id] = @item
     @shipping_charge = @item.shipping_charge.defrayer
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
