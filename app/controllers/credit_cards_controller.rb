@@ -3,7 +3,6 @@ class CreditCardsController < ApplicationController
 
   def index
     card = CreditCard.where(user_id: current_user.id)
-    @item_id = session[:item_id].values.first
     redirect_to credit_card_path(id: current_user) if card.exists?
   end
 
@@ -39,7 +38,6 @@ class CreditCardsController < ApplicationController
       @default_card_information = customer.cards.retrieve(card.card_id)
       @card_brand = @default_card_information.brand
     end
-    @item_id = session[:item_id].values.first
   end
 
   def destroy
