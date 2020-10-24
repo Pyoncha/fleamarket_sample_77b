@@ -61,6 +61,8 @@
           -# %p.attention 配送先の入力を完了してください。
           - if @default_card_information.blank?
             %button.enter__box.btn 購入する
-          - if @default_card_information.present?
+          - if @default_card_information.present?&&@item.buyer_id.blank?
             = button_to '購入する' ,{action: "pay"}, method: :post, class: "enter__permit__box btn"
+          - if @item.buyer_id.present?
+            %button.enter__box.btn 売り切れ
   = render partial: 'frame_bottom'
