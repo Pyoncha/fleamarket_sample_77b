@@ -11,20 +11,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_for (:google)
   end
 
-private
+  private
 
-def callback_for(provider)
-  @omniauth = request.env['omniauth.auth']
-  info = User.find_oauth(@omniauth)
-  @user = info[:user]
-  if @user.persisted? 
-    sign_in_and_redirect @user, event: :authentication
-    set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-  else 
-    @sns = info[:sns]
-    render template: "devise/registrations/new" 
+  def callback_for(provider)
+    @omniauth = request.env['omniauth.auth']
+    info = User.find_oauth(@omniauth)
+    @user = info[:user]
+    if @user.persisted? 
+      sign_in_and_redirect @user, event: :authentication
+      set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
+    else 
+      @sns = info[:sns]
+      render template: "devise/registrations/new" 
+    end
   end
-end
 
   def failure
     redirect_to root_path and return
@@ -56,4 +56,3 @@ end
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
-end
