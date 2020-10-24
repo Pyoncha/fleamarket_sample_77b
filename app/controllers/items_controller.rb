@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
       if @item.valid? && @item.update(item_params)
         redirect_to item_path(@item.id), notice: '商品情報を更新しました'
       else
-        render :edit
+        redirect_to edit_item_path(@item.id), notice: '未記入の必須項目もしくは条件を満たしていない項目があります'
       end
     else
       flash.now[:alert] = 'ログインし直して下さい'
