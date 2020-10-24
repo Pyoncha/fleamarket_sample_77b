@@ -54,9 +54,6 @@ ActiveRecord::Schema.define(version: 2020_10_20_151826) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-
-  
-
   create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -65,8 +62,6 @@ ActiveRecord::Schema.define(version: 2020_10_20_151826) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
-
-
 
   create_table "user_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
@@ -94,12 +89,13 @@ ActiveRecord::Schema.define(version: 2020_10_20_151826) do
     t.string "first_name_kana", null: false
     t.string "last_name_kana", null: false
     t.date "birth_day", null: false
-    t.text "introduction"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "credit_cards", "users"

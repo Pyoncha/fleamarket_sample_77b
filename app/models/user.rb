@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_one :credit_card
   
   validates :nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birth_day, presence: true
-  validates :name, presence: true
-  validates :profile, length: { maximum: 1000 }
+  # validates :name, presence: true
+  # validates :profile, length: { maximum: 1000 }
   
 
   has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
