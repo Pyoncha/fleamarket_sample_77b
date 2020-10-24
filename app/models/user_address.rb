@@ -1,7 +1,11 @@
 class UserAddress < ApplicationRecord
   belongs_to :user, optional: true
-  validates :first_name, :last_name ,:first_name_kana,:last_name_kana, :prefecture, :city, :address,  presence: true
+  # validates :first_name, :last_name ,:first_name_kana,:last_name_kana, :prefecture, :city, :address,  presence: true
+  # validates :postal_code, format:{with: /\A[0-9]{3}[-][0-9]{4}\z/}
+  validates :first_name, :last_name, :prefecture, :city, :address,  presence: true
   validates :postal_code, format:{with: /\A[0-9]{3}[-][0-9]{4}\z/}
+  validates :first_name_kana, :last_name_kana, format:{with: /\A[ァ-ヶー－]+\z/}
+
   
   enum prefecture:{
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
