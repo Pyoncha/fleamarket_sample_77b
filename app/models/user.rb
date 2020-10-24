@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :sns_credentials
   has_one :credit_card
   
-  validates :nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birth_day, presence: true
+  validates :nickname, :first_name, :last_name, :birth_day, presence: true
+  validates :first_name_kana, :last_name_kana, format:{with: /\A[ァ-ヶー－]+\z/}
+  # validates :nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birth_day, presence: true
   # validates :name, presence: true
   # validates :profile, length: { maximum: 1000 }
   
